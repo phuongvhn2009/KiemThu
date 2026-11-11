@@ -1,4 +1,3 @@
-﻿
 # SauceDemo - NUnit + Selenium
 
 [![Tests](https://github.com/phuongvhn2009/KiemThu/actions/workflows/tests.yml/badge.svg)](https://github.com/phuongvhn2009/KiemThu/actions/workflows/tests.yml)
@@ -14,8 +13,8 @@ git clone https://github.com/phuongvhn2009/KiemThu.git
 cd KiemThu
 dotnet restore SauceDemo.Tests
 $env:TEST_ARTIFACTS = "$PWD/TestResults/artifacts"
-# Nếu Manager không nhận diện Cốc Cốc: trỏ tới thư mục driver tương thích đã tải.
-$env:CHROMEDRIVER_DIRECTORY = "$env:USERPROFILE/.cache/selenium/chromedriver/win64/154.0.8037.92"
+# Chạy local bằng Cốc Cốc: đổi thành "coccoc". CI dùng "chrome".
+$env:TEST_BROWSER = "chrome"
 dotnet test SauceDemo.Tests --logger "trx;LogFileName=tests.trx" --results-directory TestResults
 ```
 
@@ -36,16 +35,14 @@ docs/          báo cáo, thẩm định AI và TRX minh chứng
 screenshots/   ảnh lỗi thực tế
 ```
 
-10 test: tiêu đề, 8 ca login thường/biên/lỗi, thêm Backpack vào giỏ và kiểm tra tên/số lượng. Hai fixture song song, driver riêng từng test. Log theo test; ảnh lỗi khi driver đã mở được. TRX tạo bằng --logger trx. CI upload artifact test-evidence kể cả khi lỗi. Không đặt TEST_ARTIFACTS thì log/ảnh ở artifacts trong NUnit WorkDirectory (thường thư mục build).
+10 test: tiêu đề, 8 ca login thường/biên/lỗi, thêm Backpack vào giỏ và kiểm tra tên/số lượng. Hai fixture song song, driver riêng từng test. Log theo test; ảnh lỗi khi driver đã mở được. TRX tạo bằng --logger trx. CI upload artifact test-evidence kể cả khi lỗi. Không đặt TEST_ARTIFACTS thì log/ảnh ở artifacts trong NUnit WorkDirectory (thường là thư mục build).
 
 ## POM và minh chứng
 
-Đổi id nút login chỉ cần sửa field submit trong LoginPage; 8 ca dữ liệu không đổi. CartPage chờ locator thuộc cart-list tránh đọc Inventory khi chuyển trang. BasePage chờ hiển thị/khả dụng; test performance_glitch_user kiểm tra chuyển trang chậm.
+Đổi id nút login chỉ cần sửa field submit trong LoginPage; 8 ca dữ liệu không đổi. CartPage chờ locator thuộc cart-list để tránh đọc nhầm trang Inventory khi chuyển trang. BasePage chờ phần tử hiển thị và khả dụng; test performance_glitch_user kiểm tra trường hợp trang chuyển chậm.
 
-![Ảnh lỗi thật trước khi sửa locator](screenshots/initial-failure.png)
+![Trang giỏ hàng sau khi thêm Sauce Labs Backpack, ảnh chụp khi lỗi StaleElement trong lần chạy đầu](screenshots/initial-failure.png)
 
 [PR #1](https://github.com/phuongvhn2009/KiemThu/pull/1) · [Thẩm định AI](docs/ai-review.md) · [Báo cáo](docs/report.md) · [TRX](docs/evidence/)
 
-GitHub Actions bị khóa bởi billing tài khoản: job chưa chạy, badge đỏ không chứng minh test sai. Sau khi gỡ khóa cần chạy lại và kiểm tra xanh. Pin repo/bio/avatar GitHub cần chủ tài khoản lựa chọn; chưa ghi nhận đã hoàn thiện.
-
-Dữ liệu login là tài khoản demo công khai SauceDemo. Không đưa token, credential hay dữ liệu cá nhân lên repo. Báo cáo ghi rõ phần đã kiểm chứng và phần còn thiếu.
+Dữ liệu login là tài khoản demo công khai của SauceDemo. Không đưa token, credential hay dữ liệu cá nhân lên repo.
