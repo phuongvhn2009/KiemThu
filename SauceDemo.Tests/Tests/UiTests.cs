@@ -17,7 +17,7 @@ public class LoginTests : BaseTest
             .Select(c => new TestCaseData(c).SetName("Login_" + c.Id));
 
     [Test]
-    public void PageTitle() => Assert.That(Login.Title, Is.EqualTo("Swag Labs"));
+    public void PageTitle() { TestContext.Out.WriteLine(Login.Title); Assert.That(Login.Title, Is.EqualTo("Swag Labs")); }
 
     [TestCaseSource(nameof(Cases))]
     public void Authenticate(LoginCase data)
@@ -25,7 +25,10 @@ public class LoginTests : BaseTest
         Log("Login case: " + data.Id);
         Login.Login(data.User, data.Password);
         if (data.Error is null)
+        {
             Assert.That(new InventoryPage(Driver, Config.TimeoutSeconds).Title, Is.EqualTo("Products"));
+            Assert.That(Driver.Url, Does.EndWith("/inventory.html"));
+        }
         else
             Assert.That(Login.Error, Is.EqualTo(data.Error));
     }

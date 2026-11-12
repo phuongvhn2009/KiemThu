@@ -5,8 +5,9 @@ namespace SauceDemo.Tests.Pages;
 
 public abstract class BasePage(IWebDriver driver, int timeout)
 {
+    protected int Timeout { get; } = timeout;
     protected IWebDriver Driver { get; } = driver;
-    protected IWebElement Find(By locator) => new WebDriverWait(Driver, TimeSpan.FromSeconds(timeout)).Until(d =>
+    protected IWebElement Find(By locator) => new WebDriverWait(Driver, TimeSpan.FromSeconds(Timeout)).Until(d =>
     {
         try
         {

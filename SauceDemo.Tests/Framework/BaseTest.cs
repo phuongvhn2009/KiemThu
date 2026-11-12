@@ -51,7 +51,7 @@ public abstract class BaseTest
             Log($"END {result.Outcome} {result.Message}");
             if (result.Outcome.Status == TestStatus.Failed && Driver is ITakesScreenshot camera)
             {
-                var path = Path.Combine(directory, "failure.png");
+                var path = Path.Combine(directory, string.Concat(TestContext.CurrentContext.Test.Name.Select(c => Path.GetInvalidFileNameChars().Contains(c) ? '_' : c)) + ".png");
                 camera.GetScreenshot().SaveAsFile(path);
                 TestContext.AddTestAttachment(path);
             }

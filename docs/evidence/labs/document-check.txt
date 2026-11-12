@@ -1,0 +1,6 @@
+DOCUMENT\SOF3091_Lab1_TB01973\SOF3091_Lab1.docx: ZIP/XML + hyperlink scan OK
+DOCUMENT\SOF3091_Lab2\SOF3091_Lab2.docx: ZIP/XML + hyperlink scan OK
+DOCUMENT\SOF3091_Lab3\Lab3.docx: ZIP/XML + hyperlink scan OK
+.artifacts\Lab3-finalreview.pdf: 14 rendered pages
+.artifacts\SOF3091_Lab1-finalreview.pdf: 19 rendered pages
+.artifacts\SOF3091_Lab2-finalreview.pdf: 17 rendered pages
