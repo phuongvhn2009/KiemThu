@@ -87,6 +87,8 @@ NuGet có cảnh báo NU1900 do SSL khi kiểm tra dữ liệu lỗ hổng; khô
 
 ### Kết quả mới ngày 14/11/2026
 
+**Đã bàn giao trên GitHub:** [nhánh refactor/lab4-pom](https://github.com/phuongvhn2009/KiemThu/tree/refactor/lab4-pom), commit code [dcd7506](https://github.com/phuongvhn2009/KiemThu/commit/dcd75060bdbd47eab8161ec2f7b7d578b3ff2cef). [CI của đúng commit](https://github.com/phuongvhn2009/KiemThu/actions/runs/43617220591) được kích hoạt nhưng GitHub không khởi chạy job vì tài khoản bị khóa do billing; chưa có kết quả test CI. [Thông báo API gốc](docs/evidence/lab4/session-20261114/ci-code-commit-annotations.json). Chủ tài khoản cần xử lý billing rồi chạy lại workflow; không sửa test hoặc workflow để che trạng thái này.
+
 Cập nhật lúc hoàn tất: chạy lại restore ngoài sandbox đã tải thành công dữ liệu lỗ hổng NuGet, không tắt audit hay đổi dependency; build cuối **0 warning, 0 error**. NU1900 trong các log trước là kết quả thật của giới hạn SSL trong sandbox. Xem [log restore](docs/evidence/lab4/session-20261114/restore-recheck-unrestricted.log) và [build cuối](docs/evidence/lab4/session-20261114/final-build.log). Người dùng đã yêu cầu tiếp tục commit/push và kiểm tra CI; các câu “chưa commit/push” bên dưới mô tả trạng thái ở thời điểm ghi nhận trước đó.
 
 Nhánh `refactor/lab4-pom`, nền `7ae637d78f16a68c8c67d2de539c6e46e72d569e` **cộng thay đổi chưa commit có sẵn**. Đã đọc lại đề A–E và giữ công việc người dùng. Xem [hồ sơ phiên này](docs/evidence/lab4/session-20261114/README.md) để đối chiếu commit, trạng thái Git, source trước sửa, hash, danh sách test, log, TRX và diff. Không dùng số liệu cũ bên dưới làm baseline mới.
@@ -115,7 +117,7 @@ Kiểm chứng: đọc caller, rà quy ước Pages/Tests và assert, so sánh m
 ![Lab 4 trước sửa tiếp, phiên 14/11](screenshots/lab4-20261114-before.png)
 ![Lab 4 sau sửa, phiên 14/11](screenshots/lab4-20261114-after.png)
 
-Hai ảnh trên là browser chụp trang hiển thị log nguyên văn và dữ liệu TRX phiên này, có nguồn/hash; không giả giao diện terminal/Test Explorer. Ảnh browser từ các test có attachment cũng nằm trong hồ sơ phiên. Không tạo Word, sửa form tài liệu hay triển khai Checkout. Chưa kiểm tra CI, chưa commit/push công việc có sẵn.
+Hai ảnh trên là browser chụp trang hiển thị log nguyên văn và dữ liệu TRX phiên này, có nguồn/hash; không giả giao diện terminal/Test Explorer. Ảnh browser từ các test có attachment cũng nằm trong hồ sơ phiên. Không tạo Word, sửa form tài liệu hay triển khai Checkout. Đã commit/push toàn bộ phần Lab 4 và kiểm tra CI theo yêu cầu tiếp theo; file cấu hình IDE cá nhân vẫn giữ local.
 
 ### Ghi nhận cũ có sẵn khi bắt đầu phiên
 

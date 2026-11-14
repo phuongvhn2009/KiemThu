@@ -3,6 +3,15 @@
 Nhánh: `refactor/lab4-pom`. Remote: `https://github.com/phuongvhn2009/KiemThu.git`.
 Commit nền: `7ae637d78f16a68c8c67d2de539c6e46e72d569e`.
 
+## Bàn giao GitHub
+
+- Commit code: [dcd75060bdbd47eab8161ec2f7b7d578b3ff2cef](https://github.com/phuongvhn2009/KiemThu/commit/dcd75060bdbd47eab8161ec2f7b7d578b3ff2cef), đã push lên [nhánh refactor/lab4-pom](https://github.com/phuongvhn2009/KiemThu/tree/refactor/lab4-pom).
+- [Workflow run 43617220591](https://github.com/phuongvhn2009/KiemThu/actions/runs/43617220591), head SHA đúng commit code, kết luận failure. Job selenium không khởi chạy, không có test/step CI được thực thi.
+- `ci-code-commit-runs.json`, `ci-code-commit-jobs.json`, `ci-code-commit-checks.json`, `ci-code-commit-annotations.json`: dữ liệu API thật. GitHub báo nguyên văn: “The job was not started because your account is locked due to a billing issue.”
+- Không thể sửa khóa billing bằng code trong repo; chủ tài khoản cần xử lý billing rồi rerun workflow. Không khai báo CI xanh hay thay kết quả local cho CI.
+- File `.gitattributes` giữ nguyên byte minh chứng Lab 4 để Git không đổi xuống dòng làm lệch hash/TRX; không sửa các log/ảnh gốc. Whitespace cuối dòng trong log START/END và dòng context của patch là nội dung capture, được giữ nguyên.
+- File `SauceDemo.Tests/Folder.DotSettings.user` là cấu hình IDE cá nhân có sẵn, không commit/push. Không sửa Word, không thêm Checkout, không tạo project/repo trùng lặp.
+
 ## Nhận diện baseline
 
 Khi bắt đầu, main đã có thay đổi Lab 4 chưa commit. Baseline **không phải HEAD sạch**: đây là source đang làm của người dùng, đã có phần lớn POM. Không ghi đè hay đảo ngược những thay đổi này để tạo ảnh “trước” khác phiên bản.

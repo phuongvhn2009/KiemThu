@@ -2,6 +2,8 @@
 
 ## Hoàn thiện và kiểm chứng ngày 14/11/2026
 
+**Trạng thái bàn giao:** đã push commit code [dcd7506](https://github.com/phuongvhn2009/KiemThu/commit/dcd75060bdbd47eab8161ec2f7b7d578b3ff2cef) lên [refactor/lab4-pom](https://github.com/phuongvhn2009/KiemThu/tree/refactor/lab4-pom). [Run CI 43617220591](https://github.com/phuongvhn2009/KiemThu/actions/runs/43617220591) thất bại trước khi job chạy: GitHub xác nhận tài khoản bị khóa vì billing. Đã lưu JSON runs/jobs/checks/annotations trong hồ sơ phiên; chưa có test nào được CI thực thi. Build local cuối 0 warning/0 error; kiểm thử 17/17 PASS vẫn là kết quả local, không thay thế kết quả CI.
+
 Cập nhật hoàn tất theo yêu cầu tiếp theo của người dùng: tiếp tục commit/push nhánh và xác minh CI. Restore ngoài sandbox truy cập được endpoint audit NuGet; build cuối 0 warning, 0 error, không đổi dependency hoặc tắt audit. Log NU1900 ban đầu được giữ nguyên, không thay bằng kết quả mới. Trạng thái chưa publish trong phần ghi nhận trước đó là lịch sử; xem cập nhật bàn giao trong hồ sơ phiên.
 
 Kết quả hiện hành nằm trong [hồ sơ phiên mới](evidence/lab4/session-20261114/README.md). Các số liệu 49/53 giây và ảnh không có ngày ở phần hồ sơ cũ bên dưới là ghi nhận có sẵn khi bắt đầu, không dùng làm baseline phiên này.
@@ -28,7 +30,7 @@ Xem [diff riêng phiên này](evidence/lab4/session-20261114/session-code.diff),
 
 Chỗ chưa đúng của bản AI có sẵn: OpenCart trả void khiến test phải tự dựng CartPage, chưa theo quy tắc chuyển trang trả Page mới. Đã sửa cả Page và caller. Iframe còn lặp ID chuỗi dù đã có locator field; đã dùng Tim(frame). Assert trong LabPage và By trong test iframe đã được khắc phục trước phiên này, không nhận là lỗi mới sửa.
 
-Giữ toàn bộ assert nghiệp vụ, JSON, Framework, NuGet và cấu hình. Không thêm Checkout, project test hoặc dependency; không sửa Word/form tài liệu. Chưa commit/push hay kiểm tra lại CI/GitHub; mỗi bộ test chạy một lần. Các nhận định CI và prompt ở hồ sơ cũ dưới đây chỉ là tư liệu trước phiên.
+Giữ toàn bộ assert nghiệp vụ, JSON, Framework, NuGet và cấu hình. Không thêm Checkout, project test hoặc dependency; không sửa Word/form tài liệu. Đã commit/push và kiểm tra CI theo yêu cầu tiếp theo; file IDE cá nhân không đưa lên Git. Mỗi bộ test local chạy một lần. Các nhận định CI và prompt ở hồ sơ cũ dưới đây chỉ là tư liệu trước phiên.
 
 ## Hồ sơ có sẵn trước phiên 14/11/2026
 
