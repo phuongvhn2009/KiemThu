@@ -9,8 +9,7 @@ public class LabTests : BaseTest
     [Test]
     public void Products()
     {
-        Login.Login("standard_user", "secret_sauce");
-        var products = new InventoryPage(Driver, Config.TimeoutSeconds).Products();
+        var products = Login.DangNhap("standard_user", "secret_sauce").Products();
         Assert.That(products, Has.Count.EqualTo(6));
         foreach (var item in products)
         {
@@ -23,11 +22,9 @@ public class LabTests : BaseTest
     [Test]
     public void PricesAscending()
     {
-        Login.Login("standard_user", "secret_sauce");
-        var page = new InventoryPage(Driver, Config.TimeoutSeconds);
-        page.SortPrice();
-        var prices = page.Products().Select(p => decimal.Parse(p.Price.TrimStart('$'), System.Globalization.CultureInfo.InvariantCulture)).ToArray();
-        Assert.That(prices, Has.Length.EqualTo(6));
+        var prices = Login.DangNhap("standard_user", "secret_sauce")
+            .SapXep("lohi").LayDanhSachGia();
+        Assert.That(prices, Has.Count.EqualTo(6));
         Assert.That(prices, Is.Ordered.Ascending);
     }
     [Test]
@@ -54,7 +51,13 @@ public class LabTests : BaseTest
     {
         var page = new LabPage(Driver, Config.TimeoutSeconds);
         page.Open("javascript_alerts");
-        Assert.That(page.Alert(kind, "Hello Lab3"), Is.EqualTo(expected));
+        var expectedText = kind == "jsAlert" ? "I am a JS Alert"
+            : kind == "jsConfirm" ? "I am a JS Confirm" : "I am a JS prompt";
+        Assert.That(page.OpenAlert(kind), Is.EqualTo(expectedText));
+        if (kind == "jsConfirm") page.DismissAlert();
+        else if (kind == "jsPrompt") page.AnswerPrompt("Hello Lab3");
+        else page.AcceptAlert();
+        Assert.That(page.Result, Is.EqualTo(expected));
     }
     [Test]
     public void Iframe()
@@ -62,6 +65,6 @@ public class LabTests : BaseTest
         var page = new LabPage(Driver, Config.TimeoutSeconds);
         page.Open("iframe");
         Assert.That(page.EditFrame("Hello Lab3"), Is.EqualTo("Hello Lab3"));
-        Assert.That(Driver.FindElement(OpenQA.Selenium.By.TagName("h3")).Text, Does.Contain("iFrame"));
+        Assert.That(page.Heading, Does.Contain("iFrame"));
     }
 }

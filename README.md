@@ -82,3 +82,53 @@ Lệnh thứ hai dự kiến trả mã lỗi và tạo ảnh đính kèm: đó l
 AI phát hiện phần còn thiếu bằng đối chiếu PDF với code. Lần chạy đầu: 15 PASS, 2 FAIL. Alert lỗi vì gửi chữ vào hộp thoại không có ô nhập; sửa chỉ SendKeys với Prompt. Iframe trả chuỗi rỗng sau Clear/SendKeys; thay bằng click, Ctrl+A, Delete và chờ nội dung thực tế. Chạy lại verified: 17/17 PASS trong 36 giây. Đây chỉ là một lần chạy; không tuyên bố đã lặp 15–20 lần. Log/TRX ở docs/evidence/labs. Prompt tác vụ tích hợp là yêu cầu người dùng ngày 12/11/2026; các prompt AI gốc của từng lab được giữ trong Word.
 
 NuGet có cảnh báo NU1900 do SSL khi kiểm tra dữ liệu lỗ hổng; không tắt audit. Các trạng thái CI trong phần ASM phía trên là lịch sử, chưa xác minh lại trên GitHub. Không commit/push trong lần tích hợp này.
+
+## Lab 4 — Refactor POM
+
+### Kết quả mới ngày 14/11/2026
+
+Cập nhật lúc hoàn tất: chạy lại restore ngoài sandbox đã tải thành công dữ liệu lỗ hổng NuGet, không tắt audit hay đổi dependency; build cuối **0 warning, 0 error**. NU1900 trong các log trước là kết quả thật của giới hạn SSL trong sandbox. Xem [log restore](docs/evidence/lab4/session-20261114/restore-recheck-unrestricted.log) và [build cuối](docs/evidence/lab4/session-20261114/final-build.log). Người dùng đã yêu cầu tiếp tục commit/push và kiểm tra CI; các câu “chưa commit/push” bên dưới mô tả trạng thái ở thời điểm ghi nhận trước đó.
+
+Nhánh `refactor/lab4-pom`, nền `7ae637d78f16a68c8c67d2de539c6e46e72d569e` **cộng thay đổi chưa commit có sẵn**. Đã đọc lại đề A–E và giữ công việc người dùng. Xem [hồ sơ phiên này](docs/evidence/lab4/session-20261114/README.md) để đối chiếu commit, trạng thái Git, source trước sửa, hash, danh sách test, log, TRX và diff. Không dùng số liệu cũ bên dưới làm baseline mới.
+
+Build trước/sau thành công; bộ thường lệ **17/17 PASS trước và sau**, cùng tên và outcome; Explicit NotExecuted. Ca `DynamicLoadingWithoutWait` chạy riêng FAIL đúng `NoSuchElementException` tại `#finish`. `python Checks/check_lab4.py` PASS, mặc định đọc minh chứng phiên 14/11. Build còn NU1900 do SSL khi audit NuGet.
+
+Đã xác minh A–D: BasePage abstract quản lý Driver/Wait/Tim; locator private readonly; đủ API đăng nhập, inventory và chaining giá; Tests không có By, Pages không có Assert hoặc public API trả IWebElement. Sửa thêm OpenCart trả CartPage và cập nhật caller; chuyển iframe bằng phần tử tìm từ locator chung. Giữ toàn bộ assert cũ, dữ liệu JSON và chức năng Lab 1–3/Assignment.
+
+### Phần E — prompt, kết quả và thẩm định AI
+
+Prompt thực tế là yêu cầu hoàn thiện Lab 4 của người dùng trong phiên này, với quy ước từ đề PDF đã đọc. Các trích đoạn nguyên văn liên quan:
+
+> “Hoàn thiện các phần A–E của Lab 4 trên project SauceDemo.Tests hiện có.”
+> “BasePage phải abstract, quản lý driver và WebDriverWait dùng chung.”
+> “Có hàm protected Tim(By) tìm phần tử kèm explicit wait.”
+> “Giữ nguyên chức năng, dữ liệu và các kiểm tra của Lab 1–3 cùng Assignment.”
+
+Quy ước đối chiếu thêm từ đề: locator private readonly By; không Assert trong Page; không By trong Tests; hành vi chuyển trang trả Page mới; không trả IWebElement qua API public. Đây là bản ghi prompt và tiêu chí đã dùng, không dựng thêm cuộc trò chuyện AI khác.
+
+Kết quả Codex trả về trong phiên này là [diff code thực tế](docs/evidence/lab4/session-20261114/session-code.diff): refactor CartTests trong UiTests.cs để nhận `var cart = inventory.OpenCart();`, InventoryPage.OpenCart trả CartPage, LabPage chuyển frame bằng `Tim(frame)`. Assert tên Backpack/số lượng và iframe giữ nguyên. Những thay đổi POM lớn khác đã có trước phiên và được kiểm tra lại, không nhận là đầu ra mới.
+
+Chỗ AI chưa đúng quy ước trong bản có sẵn: `OpenCart()` trả void, test tự `new CartPage(...)`; việc chuyển sang Page mới chưa được mô hình hóa tại hành vi chuyển trang theo hướng dẫn đề. Đã sửa Page và caller. Iframe còn lặp ID chuỗi dù có locator private readonly, đã dùng trực tiếp phần tử từ Tim(frame). Nhận xét cũ “Assert còn trong LabPage” và “By còn trong test iframe” **không còn đúng ở source đầu phiên**; không nhận công sửa lỗi đã hết.
+
+Kiểm chứng: đọc caller, rà quy ước Pages/Tests và assert, so sánh mapping tên/outcome của hai TRX; hash xác nhận Framework/Data/config/dependency không đổi; chạy riêng Explicit để giữ minh chứng lỗi đồng bộ. Không nới assert để ép xanh.
+
+![Lab 4 trước sửa tiếp, phiên 14/11](screenshots/lab4-20261114-before.png)
+![Lab 4 sau sửa, phiên 14/11](screenshots/lab4-20261114-after.png)
+
+Hai ảnh trên là browser chụp trang hiển thị log nguyên văn và dữ liệu TRX phiên này, có nguồn/hash; không giả giao diện terminal/Test Explorer. Ảnh browser từ các test có attachment cũng nằm trong hồ sơ phiên. Không tạo Word, sửa form tài liệu hay triển khai Checkout. Chưa kiểm tra CI, chưa commit/push công việc có sẵn.
+
+### Ghi nhận cũ có sẵn khi bắt đầu phiên
+
+[Phân tích, đối chiếu từng tiêu chí, API, thẩm định AI và bằng chứng Lab 4](docs/lab4.md).
+
+- BasePage abstract giữ Driver và WebDriverWait; Tim(By) tìm phần tử kèm explicit wait. Page con kế thừa, locator private readonly.
+- Login.DangNhap trả InventoryPage; LayThongBaoLoi giữ luồng login sai. InventoryPage có DaHienThi, SapXep(value) trả this và LayDanhSachGia trả IReadOnlyList<decimal>.
+- Test sắp xếp dùng `Login.DangNhap(...).SapXep("lohi").LayDanhSachGia()`, vẫn kiểm tra đủ 6 giá và Is.Ordered.Ascending.
+- Tests không còn chữ By; Pages không có Assert và không trả IWebElement qua API public. Nội dung alert được Assert ở test trước khi đóng; iframe được kiểm tra qua Page.
+- Trước: 17/17 PASS (49 giây). Sau: cùng 17/17 PASS (53 giây). Explicit không chờ vẫn rớt riêng đúng NoSuchElementException. Log/TRX ở [docs/evidence/lab4](docs/evidence/lab4/); kiểm tra tự động: `python Checks/check_lab4.py`.
+- Thẩm định AI: code trước có Assert trong LabPage và By trong test iframe, đã chuyển về đúng trách nhiệm; bản nháp có nullable warning ở alert đã sửa. Prompt và phân tích chi tiết nằm trong tài liệu Lab 4.
+
+Ảnh dưới là ảnh chụp trang hiển thị log thực thi nguyên văn, không phải Test Explorer; đối chiếu được với TRX kèm theo.
+
+![Lab 4 trước refactor](screenshots/lab4-before.png)
+![Lab 4 sau refactor](screenshots/lab4-after.png)

@@ -1,0 +1,14 @@
+{
+  "SauceDemo.Tests/appsettings.json": "c9b290306b755fa246d9e0534082597c12db9a8ebdf0ef4639cdc3e5a15df90a",
+  "SauceDemo.Tests/SauceDemo.Tests.csproj": "4d155734356171db629335d492436eb82cfcd339c86df5cde7e8a7f1195db78f",
+  "SauceDemo.Tests/Data/login.json": "b80d946ed72a99f096ca8a2fa59f4d825448792c01f43cec0476e2802936dab0",
+  "SauceDemo.Tests/Framework/BaseTest.cs": "ba0829682eb6c8b21c2a549d066e21053139293b7c891a94f8cdca78b206e6fe",
+  "SauceDemo.Tests/Framework/Settings.cs": "9413b91b6d47e9a5c7f686f22681034924ba710084caf44047c9aedc9fc482d0",
+  "SauceDemo.Tests/Pages/BasePage.cs": "77f0e778207156185ded249b6521d9cbd4dcb1ff48f1d7918677ecacf113e4c3",
+  "SauceDemo.Tests/Pages/CartPage.cs": "b36ed7f291c92b30b56c687479fc86288fa8632926460aae014ab07fad4dde59",
+  "SauceDemo.Tests/Pages/InventoryPage.cs": "2a470d50891aae52bc4ca4124237b1331c47110563f6f307beda5a9eef4dada5",
+  "SauceDemo.Tests/Pages/LabPage.cs": "d890aadfcc8a2ab89dc654b0220ce1694c091422e3bb98f95972a8b7281c01ec",
+  "SauceDemo.Tests/Pages/LoginPage.cs": "2133361497ad2f670ee7a6dd94365fd65a3cfa7250752a04ef47f3552e0adf1d",
+  "SauceDemo.Tests/Tests/LabTests.cs": "6caeffe5f66f0a454f67363e9d52c96d653e9d279278612b3408739cf5589741",
+  "SauceDemo.Tests/Tests/UiTests.cs": "fed28bb828444d1298208d32784dac243865f1068e71fa90d08caf09293d6e37"
+}

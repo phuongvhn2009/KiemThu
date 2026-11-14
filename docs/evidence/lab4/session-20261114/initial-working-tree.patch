@@ -1,0 +1,298 @@
+diff --git a/README.md b/README.md
+index fbd6c0c..1b30230 100644
+--- a/README.md
++++ b/README.md
+@@ -82,3 +82,19 @@ Lệnh thứ hai dự kiến trả mã lỗi và tạo ảnh đính kèm: đó l
+ AI phát hiện phần còn thiếu bằng đối chiếu PDF với code. Lần chạy đầu: 15 PASS, 2 FAIL. Alert lỗi vì gửi chữ vào hộp thoại không có ô nhập; sửa chỉ SendKeys với Prompt. Iframe trả chuỗi rỗng sau Clear/SendKeys; thay bằng click, Ctrl+A, Delete và chờ nội dung thực tế. Chạy lại verified: 17/17 PASS trong 36 giây. Đây chỉ là một lần chạy; không tuyên bố đã lặp 15–20 lần. Log/TRX ở docs/evidence/labs. Prompt tác vụ tích hợp là yêu cầu người dùng ngày 12/11/2026; các prompt AI gốc của từng lab được giữ trong Word.
+ 
+ NuGet có cảnh báo NU1900 do SSL khi kiểm tra dữ liệu lỗ hổng; không tắt audit. Các trạng thái CI trong phần ASM phía trên là lịch sử, chưa xác minh lại trên GitHub. Không commit/push trong lần tích hợp này.
++
++## Lab 4 — Refactor POM
++
++[Phân tích, đối chiếu từng tiêu chí, API, thẩm định AI và bằng chứng Lab 4](docs/lab4.md).
++
++- BasePage abstract giữ Driver và WebDriverWait; Tim(By) tìm phần tử kèm explicit wait. Page con kế thừa, locator private readonly.
++- Login.DangNhap trả InventoryPage; LayThongBaoLoi giữ luồng login sai. InventoryPage có DaHienThi, SapXep(value) trả this và LayDanhSachGia trả IReadOnlyList<decimal>.
++- Test sắp xếp dùng `Login.DangNhap(...).SapXep("lohi").LayDanhSachGia()`, vẫn kiểm tra đủ 6 giá và Is.Ordered.Ascending.
++- Tests không còn chữ By; Pages không có Assert và không trả IWebElement qua API public. Nội dung alert được Assert ở test trước khi đóng; iframe được kiểm tra qua Page.
++- Trước: 17/17 PASS (49 giây). Sau: cùng 17/17 PASS (53 giây). Explicit không chờ vẫn rớt riêng đúng NoSuchElementException. Log/TRX ở [docs/evidence/lab4](docs/evidence/lab4/); kiểm tra tự động: `python Checks/check_lab4.py`.
++- Thẩm định AI: code trước có Assert trong LabPage và By trong test iframe, đã chuyển về đúng trách nhiệm; bản nháp có nullable warning ở alert đã sửa. Prompt và phân tích chi tiết nằm trong tài liệu Lab 4.
++
++Ảnh dưới là ảnh chụp trang hiển thị log thực thi nguyên văn, không phải Test Explorer; đối chiếu được với TRX kèm theo.
++
++![Lab 4 trước refactor](screenshots/lab4-before.png)
++![Lab 4 sau refactor](screenshots/lab4-after.png)
+diff --git a/SauceDemo.Tests/Pages/BasePage.cs b/SauceDemo.Tests/Pages/BasePage.cs
+index 68c8d88..e324d1e 100644
+--- a/SauceDemo.Tests/Pages/BasePage.cs
++++ b/SauceDemo.Tests/Pages/BasePage.cs
+@@ -6,8 +6,9 @@ namespace SauceDemo.Tests.Pages;
+ public abstract class BasePage(IWebDriver driver, int timeout)
+ {
+     protected int Timeout { get; } = timeout;
++    protected WebDriverWait Wait { get; } = new(driver, TimeSpan.FromSeconds(timeout));
+     protected IWebDriver Driver { get; } = driver;
+-    protected IWebElement Find(By locator) => new WebDriverWait(Driver, TimeSpan.FromSeconds(Timeout)).Until(d =>
++    protected IWebElement Tim(By locator) => Wait.Until(d =>
+     {
+         try
+         {
+diff --git a/SauceDemo.Tests/Pages/CartPage.cs b/SauceDemo.Tests/Pages/CartPage.cs
+index 05c1e4d..152e4a7 100644
+--- a/SauceDemo.Tests/Pages/CartPage.cs
++++ b/SauceDemo.Tests/Pages/CartPage.cs
+@@ -6,6 +6,6 @@ public class CartPage(IWebDriver driver, int timeout) : BasePage(driver, timeout
+ {
+     private readonly By name = By.CssSelector("[data-test='cart-list'] [data-test='inventory-item-name']");
+     private readonly By quantity = By.CssSelector("[data-test='item-quantity']");
+-    public string Product => Find(name).Text;
+-    public string Quantity => Find(quantity).Text;
++    public string Product => Tim(name).Text;
++    public string Quantity => Tim(quantity).Text;
+ }
+diff --git a/SauceDemo.Tests/Pages/InventoryPage.cs b/SauceDemo.Tests/Pages/InventoryPage.cs
+index b6e9942..363262f 100644
+--- a/SauceDemo.Tests/Pages/InventoryPage.cs
++++ b/SauceDemo.Tests/Pages/InventoryPage.cs
+@@ -1,4 +1,5 @@
+-﻿using OpenQA.Selenium;
++using System.Globalization;
++using OpenQA.Selenium;
+ using OpenQA.Selenium.Support.UI;
+ 
+ namespace SauceDemo.Tests.Pages;
+@@ -9,18 +10,31 @@ public class InventoryPage(IWebDriver driver, int timeout) : BasePage(driver, ti
+     private readonly By backpack = By.Id("add-to-cart-sauce-labs-backpack");
+     private readonly By cart = By.CssSelector("[data-test='shopping-cart-link']");
+ 
++    private readonly By items = By.CssSelector("[data-test='inventory-item']");
++    private readonly By itemName = By.CssSelector("[data-test='inventory-item-name']");
++    private readonly By itemPrice = By.CssSelector("[data-test='inventory-item-price']");
++    private readonly By sort = By.CssSelector("[data-test='product-sort-container']");
++
+     public IReadOnlyList<(string Name, string Price)> Products()
+     {
+-        Find(title);
+-        return Driver.FindElements(By.CssSelector("[data-test='inventory-item']"))
++        Tim(title);
++        return Driver.FindElements(items)
+             .Select(item => (
+-                item.FindElement(By.CssSelector("[data-test='inventory-item-name']")).Text,
+-                item.FindElement(By.CssSelector("[data-test='inventory-item-price']")).Text))
++                item.FindElement(itemName).Text,
++                item.FindElement(itemPrice).Text))
+             .ToArray();
+     }
+ 
+-    public void SortPrice() => new SelectElement(Find(By.CssSelector("[data-test='product-sort-container']"))).SelectByValue("lohi");
+-    public string Title => Find(title).Text;
+-    public void AddBackpack() => Find(backpack).Click();
+-    public void OpenCart() => Find(cart).Click();
++    public bool DaHienThi() => Title == "Products" && Url.EndsWith("/inventory.html", StringComparison.Ordinal);
++    public string Url => Driver.Url;
++    public InventoryPage SapXep(string value)
++    {
++        new SelectElement(Tim(sort)).SelectByValue(value);
++        return this;
++    }
++    public IReadOnlyList<decimal> LayDanhSachGia() => Products()
++        .Select(p => decimal.Parse(p.Price.TrimStart('$'), CultureInfo.InvariantCulture)).ToArray();
++    public string Title => Tim(title).Text;
++    public void AddBackpack() => Tim(backpack).Click();
++    public void OpenCart() => Tim(cart).Click();
+ }
+diff --git a/SauceDemo.Tests/Pages/LabPage.cs b/SauceDemo.Tests/Pages/LabPage.cs
+index dd9d8bc..a5be246 100644
+--- a/SauceDemo.Tests/Pages/LabPage.cs
++++ b/SauceDemo.Tests/Pages/LabPage.cs
+@@ -1,39 +1,63 @@
+-using System.Globalization;
+ using OpenQA.Selenium;
+-using OpenQA.Selenium.Support.UI;
+ 
+ namespace SauceDemo.Tests.Pages;
+ 
+ public class LabPage(IWebDriver driver, int timeout) : BasePage(driver, timeout)
+ {
++    private readonly By start = By.CssSelector("#start button");
++    private readonly By finish = By.Id("finish");
++    private readonly By alertButton = By.CssSelector("button[onclick='jsAlert()']");
++    private readonly By confirmButton = By.CssSelector("button[onclick='jsConfirm()']");
++    private readonly By promptButton = By.CssSelector("button[onclick='jsPrompt()']");
++    private readonly By result = By.Id("result");
++    private readonly By frame = By.Id("mce_0_ifr");
++    private readonly By editorBody = By.Id("tinymce");
++    private readonly By heading = By.TagName("h3");
++
+     public void Open(string path) => Driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/" + path);
+-    public void StartLoading() => Find(By.CssSelector("#start button")).Click();
+-    public string Finish(bool wait) => (wait ? Find(By.Id("finish")) : Driver.FindElement(By.Id("finish"))).Text;
+-    public string Alert(string kind, string? input = null)
++    public void StartLoading() => Tim(start).Click();
++    // The no-wait branch preserves Lab 3's intentional synchronization failure.
++    public string Finish(bool wait) => (wait ? Tim(finish) : Driver.FindElement(finish)).Text;
++    public string Heading => Tim(heading).Text;
++    public string Result => Tim(result).Text;
++    private IAlert CurrentAlert() => Wait.Until(d =>
++    {
++        try { return d.SwitchTo().Alert(); }
++        catch (NoAlertPresentException) { return null; }
++    })!;
++
++    public string? OpenAlert(string kind)
+     {
+-        Find(By.CssSelector($"button[onclick='{kind}()']")).Click();
+-        var alert = new WebDriverWait(Driver, TimeSpan.FromSeconds(Timeout)).Until(d =>
++        var button = kind switch
+         {
+-            try { return d.SwitchTo().Alert(); }
+-            catch (NoAlertPresentException) { return null; }
+-        })!;
+-        NUnit.Framework.Assert.That(alert.Text, NUnit.Framework.Is.EqualTo(kind == "jsAlert" ? "I am a JS Alert" : kind == "jsConfirm" ? "I am a JS Confirm" : "I am a JS prompt"));
+-        if (kind == "jsConfirm") alert.Dismiss();
+-        else { if (kind == "jsPrompt" && input != null) alert.SendKeys(input); alert.Accept(); }
+-        return Find(By.Id("result")).Text;
++            "jsAlert" => alertButton,
++            "jsConfirm" => confirmButton,
++            "jsPrompt" => promptButton,
++            _ => throw new ArgumentException("Unknown alert action", nameof(kind))
++        };
++        Tim(button).Click();
++        return CurrentAlert().Text;
++    }
++    public void AcceptAlert() => CurrentAlert().Accept();
++    public void DismissAlert() => CurrentAlert().Dismiss();
++    public void AnswerPrompt(string text)
++    {
++        var alert = CurrentAlert();
++        alert.SendKeys(text);
++        alert.Accept();
+     }
+     public string EditFrame(string text)
+     {
+-        new WebDriverWait(Driver, TimeSpan.FromSeconds(Timeout)).Until(d => d.FindElement(By.Id("mce_0_ifr")));
++        Tim(frame);
+         Driver.SwitchTo().Frame("mce_0_ifr");
+         try
+         {
+-            var editor = Find(By.Id("tinymce"));
++            var editor = Tim(editorBody);
+             editor.Click();
+             editor.SendKeys(Keys.Control + "a" + Keys.Null);
+             editor.SendKeys(Keys.Delete);
+             editor.SendKeys(text);
+-            new WebDriverWait(Driver, TimeSpan.FromSeconds(Timeout)).Until(_ => editor.Text == text);
++            Wait.Until(_ => editor.Text == text);
+             return editor.Text;
+         }
+         finally { Driver.SwitchTo().DefaultContent(); }
+diff --git a/SauceDemo.Tests/Pages/LoginPage.cs b/SauceDemo.Tests/Pages/LoginPage.cs
+index 796eaca..93e44e2 100644
+--- a/SauceDemo.Tests/Pages/LoginPage.cs
++++ b/SauceDemo.Tests/Pages/LoginPage.cs
+@@ -9,12 +9,13 @@ public class LoginPage(IWebDriver driver, int timeout) : BasePage(driver, timeou
+     private readonly By submit = By.Id("login-button");
+     private readonly By error = By.CssSelector("[data-test='error']");
+     public string Title => Driver.Title;
+-    public void Open(string url) { Driver.Navigate().GoToUrl(url); Find(username); }
+-    public void Login(string user, string secret)
++    public void Open(string url) { Driver.Navigate().GoToUrl(url); Tim(username); }
++    public InventoryPage DangNhap(string user, string secret)
+     {
+-        Find(username).SendKeys(user);
+-        Find(password).SendKeys(secret);
+-        Find(submit).Click();
++        Tim(username).SendKeys(user);
++        Tim(password).SendKeys(secret);
++        Tim(submit).Click();
++        return new InventoryPage(Driver, Timeout);
+     }
+-    public string Error => Find(error).Text;
++    public string LayThongBaoLoi() => Tim(error).Text;
+ }
+diff --git a/SauceDemo.Tests/Tests/LabTests.cs b/SauceDemo.Tests/Tests/LabTests.cs
+index cddf211..faa865f 100644
+--- a/SauceDemo.Tests/Tests/LabTests.cs
++++ b/SauceDemo.Tests/Tests/LabTests.cs
+@@ -9,8 +9,7 @@ public class LabTests : BaseTest
+     [Test]
+     public void Products()
+     {
+-        Login.Login("standard_user", "secret_sauce");
+-        var products = new InventoryPage(Driver, Config.TimeoutSeconds).Products();
++        var products = Login.DangNhap("standard_user", "secret_sauce").Products();
+         Assert.That(products, Has.Count.EqualTo(6));
+         foreach (var item in products)
+         {
+@@ -23,11 +22,9 @@ public class LabTests : BaseTest
+     [Test]
+     public void PricesAscending()
+     {
+-        Login.Login("standard_user", "secret_sauce");
+-        var page = new InventoryPage(Driver, Config.TimeoutSeconds);
+-        page.SortPrice();
+-        var prices = page.Products().Select(p => decimal.Parse(p.Price.TrimStart('$'), System.Globalization.CultureInfo.InvariantCulture)).ToArray();
+-        Assert.That(prices, Has.Length.EqualTo(6));
++        var prices = Login.DangNhap("standard_user", "secret_sauce")
++            .SapXep("lohi").LayDanhSachGia();
++        Assert.That(prices, Has.Count.EqualTo(6));
+         Assert.That(prices, Is.Ordered.Ascending);
+     }
+     [Test]
+@@ -54,7 +51,13 @@ public class LabTests : BaseTest
+     {
+         var page = new LabPage(Driver, Config.TimeoutSeconds);
+         page.Open("javascript_alerts");
+-        Assert.That(page.Alert(kind, "Hello Lab3"), Is.EqualTo(expected));
++        var expectedText = kind == "jsAlert" ? "I am a JS Alert"
++            : kind == "jsConfirm" ? "I am a JS Confirm" : "I am a JS prompt";
++        Assert.That(page.OpenAlert(kind), Is.EqualTo(expectedText));
++        if (kind == "jsConfirm") page.DismissAlert();
++        else if (kind == "jsPrompt") page.AnswerPrompt("Hello Lab3");
++        else page.AcceptAlert();
++        Assert.That(page.Result, Is.EqualTo(expected));
+     }
+     [Test]
+     public void Iframe()
+@@ -62,6 +65,6 @@ public class LabTests : BaseTest
+         var page = new LabPage(Driver, Config.TimeoutSeconds);
+         page.Open("iframe");
+         Assert.That(page.EditFrame("Hello Lab3"), Is.EqualTo("Hello Lab3"));
+-        Assert.That(Driver.FindElement(OpenQA.Selenium.By.TagName("h3")).Text, Does.Contain("iFrame"));
++        Assert.That(page.Heading, Does.Contain("iFrame"));
+     }
+ }
+diff --git a/SauceDemo.Tests/Tests/UiTests.cs b/SauceDemo.Tests/Tests/UiTests.cs
+index 897809f..daf66e1 100644
+--- a/SauceDemo.Tests/Tests/UiTests.cs
++++ b/SauceDemo.Tests/Tests/UiTests.cs
+@@ -23,14 +23,15 @@ public class LoginTests : BaseTest
+     public void Authenticate(LoginCase data)
+     {
+         Log("Login case: " + data.Id);
+-        Login.Login(data.User, data.Password);
++        var inventory = Login.DangNhap(data.User, data.Password);
+         if (data.Error is null)
+         {
+-            Assert.That(new InventoryPage(Driver, Config.TimeoutSeconds).Title, Is.EqualTo("Products"));
+-            Assert.That(Driver.Url, Does.EndWith("/inventory.html"));
++            Assert.That(inventory.Title, Is.EqualTo("Products"));
++            Assert.That(inventory.Url, Does.EndWith("/inventory.html"));
++            Assert.That(inventory.DaHienThi(), Is.True);
+         }
+         else
+-            Assert.That(Login.Error, Is.EqualTo(data.Error));
++            Assert.That(Login.LayThongBaoLoi(), Is.EqualTo(data.Error));
+     }
+ }
+ 
+@@ -39,8 +40,7 @@ public class CartTests : BaseTest
+     [Test]
+     public void AddBackpack()
+     {
+-        Login.Login("standard_user", "secret_sauce");
+-        var inventory = new InventoryPage(Driver, Config.TimeoutSeconds);
++        var inventory = Login.DangNhap("standard_user", "secret_sauce");
+         Assert.That(inventory.Title, Is.EqualTo("Products"));
+         inventory.AddBackpack();
+         inventory.OpenCart();
