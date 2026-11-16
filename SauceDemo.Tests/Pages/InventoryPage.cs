@@ -25,7 +25,16 @@ public class InventoryPage(IWebDriver driver, int timeout) : BasePage(driver, ti
             .ToArray();
     }
 
-    public bool DaHienThi() => Title == "Products" && Url.EndsWith("/inventory.html", StringComparison.Ordinal);
+    public bool DaHienThi()
+    {
+        try
+        {
+            return new WebDriverWait(Driver, TimeSpan.FromSeconds(Math.Min(Timeout, 3))).Until(d =>
+                d.Url.EndsWith("/inventory.html", StringComparison.Ordinal) &&
+                d.FindElements(title).Any(e => e.Displayed && e.Text == "Products"));
+        }
+        catch (WebDriverTimeoutException) { return false; }
+    }
     public string Url => Driver.Url;
     public InventoryPage SapXep(string value)
     {

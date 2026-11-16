@@ -1,0 +1,72 @@
+[
+    {
+        "Username":  "standard_user",
+        "Password":  "secret_sauce",
+        "ThanhCong":  true,
+        "GhiChu":  "valid",
+        "Error":  null
+    },
+    {
+        "Username":  "performance_glitch_user",
+        "Password":  "secret_sauce",
+        "ThanhCong":  true,
+        "GhiChu":  "slow",
+        "Error":  null
+    },
+    {
+        "Username":  "locked_out_user",
+        "Password":  "secret_sauce",
+        "ThanhCong":  false,
+        "GhiChu":  "locked",
+        "Error":  "Epic sadface: Sorry, this user has been locked out."
+    },
+    {
+        "Username":  "standard_user",
+        "Password":  "wrong",
+        "ThanhCong":  false,
+        "GhiChu":  "wrong-password",
+        "Error":  "Epic sadface: Username and password do not match any user in this service"
+    },
+    {
+        "Username":  "",
+        "Password":  "secret_sauce",
+        "ThanhCong":  false,
+        "GhiChu":  "empty-user",
+        "Error":  "Epic sadface: Username is required"
+    },
+    {
+        "Username":  "standard_user",
+        "Password":  "",
+        "ThanhCong":  false,
+        "GhiChu":  "empty-password",
+        "Error":  "Epic sadface: Password is required"
+    },
+    {
+        "Username":  "",
+        "Password":  "",
+        "ThanhCong":  false,
+        "GhiChu":  "both-empty",
+        "Error":  "Epic sadface: Username is required"
+    },
+    {
+        "Username":  "unknown",
+        "Password":  "secret_sauce",
+        "ThanhCong":  false,
+        "GhiChu":  "unknown-user",
+        "Error":  "Epic sadface: Username and password do not match any user in this service"
+    },
+    {
+        "Username":  " standard_user ",
+        "Password":  "secret_sauce",
+        "ThanhCong":  false,
+        "GhiChu":  "Khoang trang thua",
+        "Error":  "Epic sadface: Username and password do not match any user in this service"
+    },
+    {
+        "Username":  "\u0027 OR 1=1 --",
+        "Password":  "secret_sauce",
+        "ThanhCong":  false,
+        "GhiChu":  "Ky tu dac biet",
+        "Error":  "Epic sadface: Username and password do not match any user in this service"
+    }
+]
