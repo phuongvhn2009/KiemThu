@@ -1,5 +1,5 @@
 using NUnit.Framework;
-using SauceDemo.Tests.Framework;
+using SauceDemo.Tests.Core;
 using SauceDemo.Tests.Pages;
 
 namespace SauceDemo.Tests.Tests;
@@ -30,7 +30,7 @@ public class LabTests : BaseTest
     [Test]
     public void DynamicLoading()
     {
-        var page = new LabPage(Driver, Config.TimeoutSeconds);
+        var page = new LabPage(Driver, Config.TimeoutSeconds, Config.LabBaseUrl);
         page.Open("dynamic_loading/2"); page.StartLoading();
         Assert.That(page.Finish(true), Is.EqualTo("Hello World!"));
         var path = Path.Combine(TestContext.CurrentContext.WorkDirectory, "dynamic-loading-pass.png");
@@ -40,7 +40,7 @@ public class LabTests : BaseTest
     [Test, Explicit("Intentional failure: capture Lab 3 evidence separately")]
     public void DynamicLoadingWithoutWait()
     {
-        var page = new LabPage(Driver, Config.TimeoutSeconds);
+        var page = new LabPage(Driver, Config.TimeoutSeconds, Config.LabBaseUrl);
         page.Open("dynamic_loading/2"); page.StartLoading();
         Assert.That(page.Finish(false), Is.EqualTo("Hello World!"));
     }
@@ -49,7 +49,7 @@ public class LabTests : BaseTest
     [TestCase("jsPrompt", "You entered: Hello Lab3")]
     public void JavaScriptAlert(string kind, string expected)
     {
-        var page = new LabPage(Driver, Config.TimeoutSeconds);
+        var page = new LabPage(Driver, Config.TimeoutSeconds, Config.LabBaseUrl);
         page.Open("javascript_alerts");
         var expectedText = kind == "jsAlert" ? "I am a JS Alert"
             : kind == "jsConfirm" ? "I am a JS Confirm" : "I am a JS prompt";
@@ -62,7 +62,7 @@ public class LabTests : BaseTest
     [Test]
     public void Iframe()
     {
-        var page = new LabPage(Driver, Config.TimeoutSeconds);
+        var page = new LabPage(Driver, Config.TimeoutSeconds, Config.LabBaseUrl);
         page.Open("iframe");
         Assert.That(page.EditFrame("Hello Lab3"), Is.EqualTo("Hello Lab3"));
         Assert.That(page.Heading, Does.Contain("iFrame"));

@@ -2,7 +2,7 @@ using OpenQA.Selenium;
 
 namespace SauceDemo.Tests.Pages;
 
-public class LabPage(IWebDriver driver, int timeout) : BasePage(driver, timeout)
+public class LabPage(IWebDriver driver, int timeout, string baseUrl) : BasePage(driver, timeout)
 {
     private readonly By start = By.CssSelector("#start button");
     private readonly By finish = By.Id("finish");
@@ -14,7 +14,7 @@ public class LabPage(IWebDriver driver, int timeout) : BasePage(driver, timeout)
     private readonly By editorBody = By.Id("tinymce");
     private readonly By heading = By.TagName("h3");
 
-    public void Open(string path) => Driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/" + path);
+    public void Open(string path) => Driver.Navigate().GoToUrl(new Uri(new Uri(baseUrl), path));
     public void StartLoading() => Tim(start).Click();
     // The no-wait branch preserves Lab 3's intentional synchronization failure.
     public string Finish(bool wait) => (wait ? Tim(finish) : Driver.FindElement(finish)).Text;
