@@ -1,0 +1,50 @@
+[
+    {
+        "Path":  "D:\\KiemThu\\SauceDemo.Tests\\Config\\ConfigReader.cs",
+        "Hash":  "48A4A6F17F9A98E955FA7FB0FAEFBA2A0C9CA9060A85D88AD54B1C1CA306EBE3"
+    },
+    {
+        "Path":  "D:\\KiemThu\\SauceDemo.Tests\\Config\\TestConfig.cs",
+        "Hash":  "BDE9F265ED40D0ABA81623DF3E27D61A672E5DBBEDA94139556B4137107A5B0C"
+    },
+    {
+        "Path":  "D:\\KiemThu\\SauceDemo.Tests\\Core\\BaseTest.cs",
+        "Hash":  "646D73A8B4505C6834865CAC28E286AE1DD9991D829DB45AB1158BEB5E99E551"
+    },
+    {
+        "Path":  "D:\\KiemThu\\SauceDemo.Tests\\Core\\DriverFactory.cs",
+        "Hash":  "792F885A328CFE2F80446A3321F16E899299FF47010FF76EFEFED2B78AFE9B6A"
+    },
+    {
+        "Path":  "D:\\KiemThu\\SauceDemo.Tests\\Pages\\BasePage.cs",
+        "Hash":  "77F0E778207156185DED249B6521D9CBD4DCB1FF48F1D7918677ECACF113E4C3"
+    },
+    {
+        "Path":  "D:\\KiemThu\\SauceDemo.Tests\\Pages\\CartPage.cs",
+        "Hash":  "B36ED7F291C92B30B56C687479FC86288FA8632926460AAE014AB07FAD4DDE59"
+    },
+    {
+        "Path":  "D:\\KiemThu\\SauceDemo.Tests\\Pages\\InventoryPage.cs",
+        "Hash":  "83EBBCDA77D0922DDF74F94963343C5DEB6DE49A622B0E8CAA9184C4F23152E4"
+    },
+    {
+        "Path":  "D:\\KiemThu\\SauceDemo.Tests\\Pages\\LabPage.cs",
+        "Hash":  "B51C0D81EFE965C4218EF3A9BBDF5410279F66E8532CB9FEDF25BF9FBF89EF42"
+    },
+    {
+        "Path":  "D:\\KiemThu\\SauceDemo.Tests\\Pages\\LoginPage.cs",
+        "Hash":  "2133361497AD2F670EE7A6DD94365FD65A3CFA7250752A04EF47F3552E0ADF1D"
+    },
+    {
+        "Path":  "D:\\KiemThu\\SauceDemo.Tests\\Tests\\LabTests.cs",
+        "Hash":  "BE4491605E8773371C531160C11B9C77482ED19059B092A841D66ACF18A55809"
+    },
+    {
+        "Path":  "D:\\KiemThu\\SauceDemo.Tests\\Tests\\UiTests.cs",
+        "Hash":  "62CE33F90EB4E40E5E135F2E1F1A4935231BE010EE24A86D7E417E4516980B73"
+    },
+    {
+        "Path":  "D:\\KiemThu\\SauceDemo.Tests\\Utilities\\ScreenshotHelper.cs",
+        "Hash":  "C52074DE430052232CE3F1D17923F11166094D344FB5AE2FD60F2D5B8EE40019"
+    }
+]

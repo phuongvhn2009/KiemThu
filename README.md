@@ -1,6 +1,61 @@
 ﻿
 # SauceDemo - NUnit + Selenium
 
+## Lab 5 — Framework, cấu hình và dữ liệu ngoài
+
+Phần này là hướng dẫn cho source hiện tại; hướng dẫn Cốc Cốc và cấu trúc Framework bên dưới thuộc các Lab trước. Nâng cấp trực tiếp project SauceDemo.Tests, không thêm Checkout.
+
+- `Config/`: TestConfig, ConfigReader và appsettings.json. Đọc từ AppContext.BaseDirectory bằng Configuration.Json + Binder; JSON được chép ra output. BaseUrl và LabBaseUrl đều nằm trong JSON.
+- `Core/`: DriverFactory trả IWebDriver, ánh xạ enum sang Chrome/Firefox/Edge/CocCoc; báo đúng tên nhập sai. Headless và kích thước cửa sổ áp dụng cho mọi trình duyệt. Tên kiểu Selenium trong factory là ánh xạ cần thiết; không có URL hoặc chuỗi lựa chọn trình duyệt viết cứng trong C#.
+- `Core/BaseTest.cs`: đọc config, tạo driver, mở URL; giữ log và chụp ảnh Failed qua `Utilities/ScreenshotHelper.cs`. Quit và Dispose nằm trong finally riêng, kể cả khi chụp ảnh hoặc Quit gặp lỗi; dọn driver nếu mở URL ở SetUp lỗi.
+- `Pages/`, `Tests/`: giữ POM và kiểm tra nghiệp vụ cũ. DaHienThi dùng FindElements, chờ tối đa 3 giây rồi trả false khi timeout. Test đăng nhập kiểm tra bool ThanhCong cho cả ca thuận/nghịch và giữ nguyên thông báo lỗi cũ.
+- `Data/users.json`: nguồn hiện hành; Username, Password, ThanhCong, GhiChu; thêm Error để bảo toàn kiểm tra thông báo lỗi Lab 1–4. `login.json` là dữ liệu cũ được giữ nguyên. Nguồn static sinh một TestCaseData mỗi dòng với tên DangNhap_<chỉ số>_<Username>, tránh trùng tên khi username rỗng.
+- `screenshots/`, `docs/evidence/lab5/`: minh chứng mới, tách biệt hồ sơ Lab 4.
+
+### Chạy Lab 5
+
+```powershell
+dotnet build SauceDemo.Tests
+dotnet test SauceDemo.Tests --logger 'trx;LogFileName=lab5.trx' --results-directory TestResults/lab5
+dotnet run --project Checks/Lab5Checks.csproj
+```
+
+Sửa duy nhất Browser trong `SauceDemo.Tests/Config/appsettings.json`: Chrome (mặc định), Firefox, Edge hoặc CocCoc. Không cần sửa C#. CocCocBinary nằm trong JSON; sửa đường dẫn đó nếu Cốc Cốc cài ở vị trí khác. Cốc Cốc dùng ChromeOptions/ChromeDriver vì cùng nền Chromium, có headless và kích thước cửa sổ như Chrome. Driver phải khớp phiên bản Chromium của Cốc Cốc; trên máy này dùng driver 154.0.8037.92 cho Cốc Cốc 154.
+
+Xóa biến TEST_BROWSER nếu muốn lấy lựa chọn từ JSON; biến này được giữ để CI cũ tiếp tục chạy. BROWSER_BINARY (hoặc CHROME_BINARY cũ) chỉ dành cho binary cài ở vị trí riêng; CHROMEDRIVER_DIRECTORY chỉ dành cho driver Chromium khớp phiên bản. Khi chuyển trình duyệt cần xóa các override binary/driver của trình duyệt trước. Selenium Manager tìm/tải driver mặc định.
+
+Thêm một object đúng schema vào users.json rồi chạy lại: số ca tăng mà không sửa test. Không chạy Explicit DynamicLoadingWithoutWait trong bộ thường lệ. Script check_lab4.py dùng hash/source baseline Lab 4, nên không dùng để đánh giá source Lab 5 đã đổi cấu trúc và dữ liệu; hồ sơ Lab 4 được giữ nguyên để kiểm tra trên commit cũ.
+
+Kiểm chứng local: build 0 warning/0 error; Cốc Cốc 20/20 PASS với 11 bộ dữ liệu; Chrome và Firefox 19/19 PASS với 10 bộ trước đó. Trên source cuối, chạy riêng DynamicLoading bằng Chrome rồi Firefox cũng PASS, chỉ đổi Browser trong JSON. [Hồ sơ thực thi và giới hạn](docs/evidence/lab5/README.md), [ảnh Chrome](screenshots/lab5-chrome.png), [ảnh Firefox](screenshots/lab5-firefox.png), [ảnh Cốc Cốc](screenshots/lab5-coccoc.png), [dữ liệu trước](screenshots/lab5-data-before.png), [sau](screenshots/lab5-data-after.png).
+
+### Phần E — prompt, toàn bộ kết quả AI và thẩm định
+
+Prompt dùng trong phiên Codex này: “Sinh 10 bộ dữ liệu kiểm thử đăng nhập SauceDemo theo schema Username (string), Password (string), ThanhCong (bool), GhiChu (string). Có ca thuận, tài khoản khóa, sai mật khẩu, ô trống, khoảng trắng và ký tự đặc biệt. Đây là đề xuất cần thẩm định, chưa phải kỳ vọng đã xác minh.”
+
+Toàn bộ 10 đề xuất do Codex sinh trong phiên này (không phải lời khai về một dịch vụ AI khác):
+
+```json
+[
+  {"Username":"standard_user","Password":"secret_sauce","ThanhCong":true,"GhiChu":"Đăng nhập hợp lệ"},
+  {"Username":"performance_glitch_user","Password":"secret_sauce","ThanhCong":true,"GhiChu":"Tài khoản phản hồi chậm"},
+  {"Username":"locked_out_user","Password":"secret_sauce","ThanhCong":false,"GhiChu":"Tài khoản bị khóa"},
+  {"Username":"standard_user","Password":"wrong","ThanhCong":false,"GhiChu":"Mật khẩu sai"},
+  {"Username":"","Password":"secret_sauce","ThanhCong":false,"GhiChu":"Username rỗng"},
+  {"Username":"standard_user","Password":"","ThanhCong":false,"GhiChu":"Password rỗng"},
+  {"Username":"","Password":"","ThanhCong":false,"GhiChu":"Cả hai ô rỗng"},
+  {"Username":"' OR 1=1 --","Password":"secret_sauce","ThanhCong":false,"GhiChu":"Ký tự đặc biệt"},
+  {"Username":" standard_user ","Password":"secret_sauce","ThanhCong":true,"GhiChu":"Ứng dụng tự trim khoảng trắng"},
+  {"Username":"admin","Password":"admin","ThanhCong":true,"GhiChu":"Đăng nhập quản trị và mở dashboard admin"}
+]
+```
+
+Hai bộ không dùng được nguyên trạng:
+
+1. Bộ 9 kỳ vọng true dựa trên giả định ứng dụng tự trim username. Trang thực tế từ chối username có khoảng trắng; dữ liệu được sửa thành false và kiểm tra đúng thông báo mismatch. Không sửa ứng dụng hoặc nới assert theo kỳ vọng AI.
+2. Bộ 10 tự bịa tài khoản admin/admin và chức năng dashboard quản trị. Không có căn cứ xác nhận tài khoản/quyền này trên SauceDemo, nên loại khỏi tập chạy; không coi đề xuất AI là tài khoản thật. Có thể thiết kế thành ca âm riêng nếu cần, với kỳ vọng đã xác minh.
+
+Các đề xuất được đối chiếu với dữ liệu Lab trước và kết quả browser. users.json không chép mù toàn bộ đầu ra AI: giữ ca unknown-user cũ và thông báo lỗi gốc, sửa kỳ vọng khoảng trắng, bổ sung ca biên độc lập. Không có mật khẩu thật hoặc credential riêng trong cấu hình.
+
 [![Tests](https://github.com/phuongvhn2009/KiemThu/actions/workflows/tests.yml/badge.svg)](https://github.com/phuongvhn2009/KiemThu/actions/workflows/tests.yml)
 
 Framework kiểm thử đăng nhập và giỏ hàng SauceDemo cho ASM kiểm thử nâng cao cùng AI. C#/.NET 10, NUnit 4, Selenium 4, POM, explicit wait, dữ liệu JSON. Local dùng **Cốc Cốc**; CI dùng Chrome headless.
@@ -21,7 +76,9 @@ dotnet test SauceDemo.Tests --logger "trx;LogFileName=tests.trx" --results-direc
 
 Chỉ đặt CHROMEDRIVER_DIRECTORY khi thư mục tồn tại; đổi phiên bản theo máy. Bỏ biến để Selenium Manager tự tải. Cốc Cốc ở vị trí khác: đặt CHROME_BINARY tới browser.exe. Mặc định Windows tìm Program Files/CocCoc/Browser/Application/browser.exe. CI/Linux: TEST_BROWSER=chrome, không đặt đường dẫn Windows.
 
-## Cấu hình và cấu trúc
+## Cấu hình và cấu trúc (Lịch sử Lab 1–4)
+
+*(Lưu ý: Phần bên dưới lưu lại tài liệu lịch sử của Lab 1–4; cấu trúc hiện hành của Lab 5 gồm `Config/`, `Core/`, `Pages/`, `Data/`, `Utilities/`, `Tests/` đã mô tả ở đầu file).*
 
 appsettings.json chứa BaseUrl HTTPS, Browser (coccoc/chrome), TimeoutSeconds dương, Headless. TEST_BROWSER ghi đè browser; CHROME_BINARY ghi đè executable. Selenium tạo profile tạm riêng.
 
