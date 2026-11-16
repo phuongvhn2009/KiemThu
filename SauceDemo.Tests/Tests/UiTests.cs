@@ -23,14 +23,15 @@ public class LoginTests : BaseTest
     public void Authenticate(LoginCase data)
     {
         Log("Login case: " + data.Id);
-        Login.Login(data.User, data.Password);
+        var inventory = Login.DangNhap(data.User, data.Password);
         if (data.Error is null)
         {
-            Assert.That(new InventoryPage(Driver, Config.TimeoutSeconds).Title, Is.EqualTo("Products"));
-            Assert.That(Driver.Url, Does.EndWith("/inventory.html"));
+            Assert.That(inventory.Title, Is.EqualTo("Products"));
+            Assert.That(inventory.Url, Does.EndWith("/inventory.html"));
+            Assert.That(inventory.DaHienThi(), Is.True);
         }
         else
-            Assert.That(Login.Error, Is.EqualTo(data.Error));
+            Assert.That(Login.LayThongBaoLoi(), Is.EqualTo(data.Error));
     }
 }
 
@@ -39,12 +40,10 @@ public class CartTests : BaseTest
     [Test]
     public void AddBackpack()
     {
-        Login.Login("standard_user", "secret_sauce");
-        var inventory = new InventoryPage(Driver, Config.TimeoutSeconds);
+        var inventory = Login.DangNhap("standard_user", "secret_sauce");
         Assert.That(inventory.Title, Is.EqualTo("Products"));
         inventory.AddBackpack();
-        inventory.OpenCart();
-        var cart = new CartPage(Driver, Config.TimeoutSeconds);
+        var cart = inventory.OpenCart();
         Assert.Multiple(() =>
         {
             Assert.That(cart.Product, Is.EqualTo("Sauce Labs Backpack"));

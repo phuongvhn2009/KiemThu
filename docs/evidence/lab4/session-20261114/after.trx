@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="8a7e44ad-6f56-4538-80b6-0867b1981637" name="ADMIN-PC@DESKTOP-DRNQBST 2026-11-14 23:35:44" runUser="DESKTOP-DRNQBST\CodexSandboxOffline" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-11-14T23:35:44.4423064+07:00" queuing="2026-11-14T23:35:44.4423069+07:00" start="2026-11-14T23:35:41.0124741+07:00" finish="2026-11-14T23:36:24.1604347+07:00" />
+  <TestSettings name="default" id="fc27c059-78f4-4425-b145-cd988ee9285d">
+    <Deployment runDeploymentRoot="ADMIN-PC_DESKTOP-DRNQBST_2026-11-14_23_35_44" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="2bc22e3d-fdb7-4e7e-93d0-dfefcae54a76" testId="7f9d1fef-ac9c-0d35-e3c0-4e3654bf552c" testName="JavaScriptAlert(&quot;jsAlert&quot;,&quot;You successfully clicked an alert&quot;)" computerName="DESKTOP-DRNQBST" duration="00:00:05.8662370" startTime="2026-11-14T23:35:58.3173711+07:00" endTime="2026-11-14T23:36:04.1836067+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2bc22e3d-fdb7-4e7e-93d0-dfefcae54a76" />
+    <UnitTestResult executionId="77b06823-d7d3-4eb2-89bc-85b976d88f33" testId="08e168e5-b286-c109-8173-e710a9a6f7fa" testName="Login_slow" computerName="DESKTOP-DRNQBST" duration="00:00:07.3977120" startTime="2026-11-14T23:35:46.5776795+07:00" endTime="2026-11-14T23:35:53.9753904+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="77b06823-d7d3-4eb2-89bc-85b976d88f33" />
+    <UnitTestResult executionId="fa46d618-e5b9-4adf-9578-eed8c5992482" testId="7471ba85-d2e4-4cb9-fef2-9ce4ced60bb3" testName="JavaScriptAlert(&quot;jsPrompt&quot;,&quot;You entered: Hello Lab3&quot;)" computerName="DESKTOP-DRNQBST" duration="00:00:07.5075180" startTime="2026-11-14T23:36:11.6014503+07:00" endTime="2026-11-14T23:36:19.1089700+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="fa46d618-e5b9-4adf-9578-eed8c5992482" />
+    <UnitTestResult executionId="c9e3e2a5-d7dd-4080-8283-30a18f526f64" testId="df448686-99a8-4c49-e9c5-9ca72f9b2a05" testName="Login_locked" computerName="DESKTOP-DRNQBST" duration="00:00:02.0855590" startTime="2026-11-14T23:35:53.9754383+07:00" endTime="2026-11-14T23:35:56.0609963+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c9e3e2a5-d7dd-4080-8283-30a18f526f64" />
+    <UnitTestResult executionId="08ec8cac-237b-4714-9c43-7f1f8df4df5a" testId="0f5a6e1c-c5ce-2587-d2f5-40f8475dcd6b" testName="PageTitle" computerName="DESKTOP-DRNQBST" duration="00:00:03.1012179" startTime="2026-11-14T23:36:11.8416744+07:00" endTime="2026-11-14T23:36:14.9428919+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="08ec8cac-237b-4714-9c43-7f1f8df4df5a">
+      <Output>
+        <StdOut>Swag Labs</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="e88cd193-3863-4a81-9a3d-2a1365414b75" testId="526a4a72-7092-7cfc-1012-e55fe0f574aa" testName="JavaScriptAlert(&quot;jsConfirm&quot;,&quot;You clicked: Cancel&quot;)" computerName="DESKTOP-DRNQBST" duration="00:00:07.4177090" startTime="2026-11-14T23:36:04.1836628+07:00" endTime="2026-11-14T23:36:11.6013704+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e88cd193-3863-4a81-9a3d-2a1365414b75" />
+    <UnitTestResult executionId="1ba1b6b2-5aa4-49d6-b6f3-22ec688d4f24" testId="f13c7b49-896d-43fa-5e47-c7555e08d3a5" testName="Login_both-empty" computerName="DESKTOP-DRNQBST" duration="00:00:04.3738680" startTime="2026-11-14T23:36:04.1723774+07:00" endTime="2026-11-14T23:36:08.5462494+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1ba1b6b2-5aa4-49d6-b6f3-22ec688d4f24" />
+    <UnitTestResult executionId="845d709c-87b0-4cd6-ac03-8bff26b7b5ae" testId="23258628-5b72-dd37-e0da-978b41af5998" testName="DynamicLoading" computerName="DESKTOP-DRNQBST" duration="00:00:10.3740100" startTime="2026-11-14T23:35:41.5143364+07:00" endTime="2026-11-14T23:35:51.8883448+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="845d709c-87b0-4cd6-ac03-8bff26b7b5ae">
+      <ResultFiles>
+        <ResultFile path="DESKTOP-DRNQBST\dynamic-loading-pass.png" />
+      </ResultFiles>
+    </UnitTestResult>
+    <UnitTestResult executionId="667669e6-a52a-4967-9ceb-2eb6d0a7ac7c" testId="7f4b8000-5cf5-1dd0-a648-f5842761d401" testName="Iframe" computerName="DESKTOP-DRNQBST" duration="00:00:06.4281309" startTime="2026-11-14T23:35:51.8890417+07:00" endTime="2026-11-14T23:35:58.3171717+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="667669e6-a52a-4967-9ceb-2eb6d0a7ac7c" />
+    <UnitTestResult executionId="15e435d3-60e0-43cc-aa13-9a58eeef3034" testId="477778a8-7869-4315-4cbd-6b17b39dd368" testName="DynamicLoadingWithoutWait" computerName="DESKTOP-DRNQBST" duration="00:00:00.0005880" startTime="2026-11-14T23:35:51.8884167+07:00" endTime="2026-11-14T23:35:51.8890047+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="15e435d3-60e0-43cc-aa13-9a58eeef3034">
+      <Output>
+        <StdOut>Intentional failure: capture Lab 3 evidence separately</StdOut>
+        <ErrorInfo>
+          <Message>Intentional failure: capture Lab 3 evidence separately</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="ea7ef9bd-fd09-46b9-9869-dd2c060bda1a" testId="f61bce69-2ddf-35bc-21c3-6f65a8dfff27" testName="Login_empty-password" computerName="DESKTOP-DRNQBST" duration="00:00:03.3461900" startTime="2026-11-14T23:36:00.8245796+07:00" endTime="2026-11-14T23:36:04.1707688+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ea7ef9bd-fd09-46b9-9869-dd2c060bda1a" />
+    <UnitTestResult executionId="a213c18c-23f3-4c8d-9b90-b19d2d811f6d" testId="e1546be9-2bd2-4048-f7a6-af2f21d1a7b3" testName="Products" computerName="DESKTOP-DRNQBST" duration="00:00:02.5286100" startTime="2026-11-14T23:36:21.5750965+07:00" endTime="2026-11-14T23:36:24.1037073+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a213c18c-23f3-4c8d-9b90-b19d2d811f6d">
+      <Output>
+        <StdOut>Sauce Labs Backpack: $29.99&#xD;
+Sauce Labs Bike Light: $9.99&#xD;
+Sauce Labs Bolt T-Shirt: $15.99&#xD;
+Sauce Labs Fleece Jacket: $49.99&#xD;
+Sauce Labs Onesie: $7.99&#xD;
+Test.allTheThings() T-Shirt (Red): $15.99</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="2ac453d3-7dc2-423c-87ad-a4d4383ff507" testId="d1e0aced-82a8-e6a1-5175-a41b3b31c5dc" testName="Login_unknown-user" computerName="DESKTOP-DRNQBST" duration="00:00:03.2951010" startTime="2026-11-14T23:36:08.5463036+07:00" endTime="2026-11-14T23:36:11.8414045+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2ac453d3-7dc2-423c-87ad-a4d4383ff507" />
+    <UnitTestResult executionId="dbd9c5a5-d587-4886-a33d-82a7dea7cfdc" testId="96db706d-8f8a-219e-8e75-73cc243ea3a9" testName="PricesAscending" computerName="DESKTOP-DRNQBST" duration="00:00:02.4640870" startTime="2026-11-14T23:36:19.1096072+07:00" endTime="2026-11-14T23:36:21.5736927+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="dbd9c5a5-d587-4886-a33d-82a7dea7cfdc" />
+    <UnitTestResult executionId="8937a55a-41b0-45fe-8f43-6eebafc5acfd" testId="6ae2767a-b55f-3a29-b58d-b5fad78ce241" testName="Login_wrong-password" computerName="DESKTOP-DRNQBST" duration="00:00:02.4497080" startTime="2026-11-14T23:35:56.0610394+07:00" endTime="2026-11-14T23:35:58.5107463+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8937a55a-41b0-45fe-8f43-6eebafc5acfd" />
+    <UnitTestResult executionId="18340d9b-d1fc-47b3-aaee-289a124da1b4" testId="c284ffcd-37f0-066c-ed2a-4484f652c78c" testName="AddBackpack" computerName="DESKTOP-DRNQBST" duration="00:00:02.5238299" startTime="2026-11-14T23:35:41.5143359+07:00" endTime="2026-11-14T23:35:44.0381115+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="18340d9b-d1fc-47b3-aaee-289a124da1b4" />
+    <UnitTestResult executionId="152ac955-56c3-4de5-a4ca-837f35b9bf1b" testId="efc04750-fc22-3896-c91b-2faed696ceed" testName="Login_empty-user" computerName="DESKTOP-DRNQBST" duration="00:00:02.3137320" startTime="2026-11-14T23:35:58.5108066+07:00" endTime="2026-11-14T23:36:00.8245371+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="152ac955-56c3-4de5-a4ca-837f35b9bf1b" />
+    <UnitTestResult executionId="49bd5ff7-2e36-49c7-b025-c31f8dd7d920" testId="3793f117-b6dd-7027-3e85-835f05c94f7e" testName="Login_valid" computerName="DESKTOP-DRNQBST" duration="00:00:02.5357610" startTime="2026-11-14T23:35:44.0418362+07:00" endTime="2026-11-14T23:35:46.5775947+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="49bd5ff7-2e36-49c7-b025-c31f8dd7d920" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Login_empty-user" storage="d:\kiemthu\saucedemo.tests\bin\debug\net10.0\saucedemo.tests.dll" id="efc04750-fc22-3896-c91b-2faed696ceed">
+      <Execution id="152ac955-56c3-4de5-a4ca-837f35b9bf1b" />
+      <TestMethod codeBase="D:\KiemThu\SauceDemo.Tests\bin\Debug\net10.0\SauceDemo.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="SauceDemo.Tests.Tests.LoginTests" name="Login_empty-user" />
+    </UnitTest>
+    <UnitTest name="Login_locked" storage="d:\kiemthu\saucedemo.tests\bin\debug\net10.0\saucedemo.tests.dll" id="df448686-99a8-4c49-e9c5-9ca72f9b2a05">
+      <Execution id="c9e3e2a5-d7dd-4080-8283-30a18f526f64" />
+      <TestMethod codeBase="D:\KiemThu\SauceDemo.Tests\bin\Debug\net10.0\SauceDemo.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="SauceDemo.Tests.Tests.LoginTests" name="Login_locked" />
+    </UnitTest>
+    <UnitTest name="JavaScriptAlert(&quot;jsAlert&quot;,&quot;You successfully clicked an alert&quot;)" storage="d:\kiemthu\saucedemo.tests\bin\debug\net10.0\saucedemo.tests.dll" id="7f9d1fef-ac9c-0d35-e3c0-4e3654bf552c">
+      <Execution id="2bc22e3d-fdb7-4e7e-93d0-dfefcae54a76" />
+      <TestMethod codeBase="D:\KiemThu\SauceDemo.Tests\bin\Debug\net10.0\SauceDemo.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="SauceDemo.Tests.Tests.LabTests" name="JavaScriptAlert(&quot;jsAlert&quot;,&quot;You successfully clicked an alert&quot;)" />
+    </UnitTest>
+    <UnitTest name="Login_valid" storage="d:\kiemthu\saucedemo.tests\bin\debug\net10.0\saucedemo.tests.dll" id="3793f117-b6dd-7027-3e85-835f05c94f7e">
+      <Execution id="49bd5ff7-2e36-49c7-b025-c31f8dd7d920" />
+      <TestMethod codeBase="D:\KiemThu\SauceDemo.Tests\bin\Debug\net10.0\SauceDemo.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="SauceDemo.Tests.Tests.LoginTests" name="Login_valid" />
+    </UnitTest>
+    <UnitTest name="JavaScriptAlert(&quot;jsConfirm&quot;,&quot;You clicked: Cancel&quot;)" storage="d:\kiemthu\saucedemo.tests\bin\debug\net10.0\saucedemo.tests.dll" id="526a4a72-7092-7cfc-1012-e55fe0f574aa">
+      <Execution id="e88cd193-3863-4a81-9a3d-2a1365414b75" />
+      <TestMethod codeBase="D:\KiemThu\SauceDemo.Tests\bin\Debug\net10.0\SauceDemo.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="SauceDemo.Tests.Tests.LabTests" name="JavaScriptAlert(&quot;jsConfirm&quot;,&quot;You clicked: Cancel&quot;)" />
+    </UnitTest>
+    <UnitTest name="Iframe" storage="d:\kiemthu\saucedemo.tests\bin\debug\net10.0\saucedemo.tests.dll" id="7f4b8000-5cf5-1dd0-a648-f5842761d401">
+      <Execution id="667669e6-a52a-4967-9ceb-2eb6d0a7ac7c" />
+      <TestMethod codeBase="D:\KiemThu\SauceDemo.Tests\bin\Debug\net10.0\SauceDemo.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="SauceDemo.Tests.Tests.LabTests" name="Iframe" />
+    </UnitTest>
+    <UnitTest name="AddBackpack" storage="d:\kiemthu\saucedemo.tests\bin\debug\net10.0\saucedemo.tests.dll" id="c284ffcd-37f0-066c-ed2a-4484f652c78c">
+      <Execution id="18340d9b-d1fc-47b3-aaee-289a124da1b4" />
+      <TestMethod codeBase="D:\KiemThu\SauceDemo.Tests\bin\Debug\net10.0\SauceDemo.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="SauceDemo.Tests.Tests.CartTests" name="AddBackpack" />
+    </UnitTest>
+    <UnitTest name="Login_wrong-password" storage="d:\kiemthu\saucedemo.tests\bin\debug\net10.0\saucedemo.tests.dll" id="6ae2767a-b55f-3a29-b58d-b5fad78ce241">
+      <Execution id="8937a55a-41b0-45fe-8f43-6eebafc5acfd" />
+      <TestMethod codeBase="D:\KiemThu\SauceDemo.Tests\bin\Debug\net10.0\SauceDemo.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="SauceDemo.Tests.Tests.LoginTests" name="Login_wrong-password" />
+    </UnitTest>
+    <UnitTest name="PageTitle" storage="d:\kiemthu\saucedemo.tests\bin\debug\net10.0\saucedemo.tests.dll" id="0f5a6e1c-c5ce-2587-d2f5-40f8475dcd6b">
+      <Execution id="08ec8cac-237b-4714-9c43-7f1f8df4df5a" />
+      <TestMethod codeBase="D:\KiemThu\SauceDemo.Tests\bin\Debug\net10.0\SauceDemo.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="SauceDemo.Tests.Tests.LoginTests" name="PageTitle" />
+    </UnitTest>
+    <UnitTest name="Login_both-empty" storage="d:\kiemthu\saucedemo.tests\bin\debug\net10.0\saucedemo.tests.dll" id="f13c7b49-896d-43fa-5e47-c7555e08d3a5">
+      <Execution id="1ba1b6b2-5aa4-49d6-b6f3-22ec688d4f24" />
+      <TestMethod codeBase="D:\KiemThu\SauceDemo.Tests\bin\Debug\net10.0\SauceDemo.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="SauceDemo.Tests.Tests.LoginTests" name="Login_both-empty" />
+    </UnitTest>
+    <UnitTest name="PricesAscending" storage="d:\kiemthu\saucedemo.tests\bin\debug\net10.0\saucedemo.tests.dll" id="96db706d-8f8a-219e-8e75-73cc243ea3a9">
+      <Execution id="dbd9c5a5-d587-4886-a33d-82a7dea7cfdc" />
+      <TestMethod codeBase="D:\KiemThu\SauceDemo.Tests\bin\Debug\net10.0\SauceDemo.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="SauceDemo.Tests.Tests.LabTests" name="PricesAscending" />
+    </UnitTest>
+    <UnitTest name="DynamicLoadingWithoutWait" storage="d:\kiemthu\saucedemo.tests\bin\debug\net10.0\saucedemo.tests.dll" id="477778a8-7869-4315-4cbd-6b17b39dd368">
+      <Execution id="15e435d3-60e0-43cc-aa13-9a58eeef3034" />
+      <TestMethod codeBase="D:\KiemThu\SauceDemo.Tests\bin\Debug\net10.0\SauceDemo.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="SauceDemo.Tests.Tests.LabTests" name="DynamicLoadingWithoutWait" />
+    </UnitTest>
+    <UnitTest name="JavaScriptAlert(&quot;jsPrompt&quot;,&quot;You entered: Hello Lab3&quot;)" storage="d:\kiemthu\saucedemo.tests\bin\debug\net10.0\saucedemo.tests.dll" id="7471ba85-d2e4-4cb9-fef2-9ce4ced60bb3">
+      <Execution id="fa46d618-e5b9-4adf-9578-eed8c5992482" />
+      <TestMethod codeBase="D:\KiemThu\SauceDemo.Tests\bin\Debug\net10.0\SauceDemo.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="SauceDemo.Tests.Tests.LabTests" name="JavaScriptAlert(&quot;jsPrompt&quot;,&quot;You entered: Hello Lab3&quot;)" />
+    </UnitTest>
+    <UnitTest name="Login_unknown-user" storage="d:\kiemthu\saucedemo.tests\bin\debug\net10.0\saucedemo.tests.dll" id="d1e0aced-82a8-e6a1-5175-a41b3b31c5dc">
+      <Execution id="2ac453d3-7dc2-423c-87ad-a4d4383ff507" />
+      <TestMethod codeBase="D:\KiemThu\SauceDemo.Tests\bin\Debug\net10.0\SauceDemo.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="SauceDemo.Tests.Tests.LoginTests" name="Login_unknown-user" />
+    </UnitTest>
+    <UnitTest name="Login_slow" storage="d:\kiemthu\saucedemo.tests\bin\debug\net10.0\saucedemo.tests.dll" id="08e168e5-b286-c109-8173-e710a9a6f7fa">
+      <Execution id="77b06823-d7d3-4eb2-89bc-85b976d88f33" />
+      <TestMethod codeBase="D:\KiemThu\SauceDemo.Tests\bin\Debug\net10.0\SauceDemo.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="SauceDemo.Tests.Tests.LoginTests" name="Login_slow" />
+    </UnitTest>
+    <UnitTest name="Login_empty-password" storage="d:\kiemthu\saucedemo.tests\bin\debug\net10.0\saucedemo.tests.dll" id="f61bce69-2ddf-35bc-21c3-6f65a8dfff27">
+      <Execution id="ea7ef9bd-fd09-46b9-9869-dd2c060bda1a" />
+      <TestMethod codeBase="D:\KiemThu\SauceDemo.Tests\bin\Debug\net10.0\SauceDemo.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="SauceDemo.Tests.Tests.LoginTests" name="Login_empty-password" />
+    </UnitTest>
+    <UnitTest name="Products" storage="d:\kiemthu\saucedemo.tests\bin\debug\net10.0\saucedemo.tests.dll" id="e1546be9-2bd2-4048-f7a6-af2f21d1a7b3">
+      <Execution id="a213c18c-23f3-4c8d-9b90-b19d2d811f6d" />
+      <TestMethod codeBase="D:\KiemThu\SauceDemo.Tests\bin\Debug\net10.0\SauceDemo.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="SauceDemo.Tests.Tests.LabTests" name="Products" />
+    </UnitTest>
+    <UnitTest name="DynamicLoading" storage="d:\kiemthu\saucedemo.tests\bin\debug\net10.0\saucedemo.tests.dll" id="23258628-5b72-dd37-e0da-978b41af5998">
+      <Execution id="845d709c-87b0-4cd6-ac03-8bff26b7b5ae" />
+      <TestMethod codeBase="D:\KiemThu\SauceDemo.Tests\bin\Debug\net10.0\SauceDemo.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="SauceDemo.Tests.Tests.LabTests" name="DynamicLoading" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="7f9d1fef-ac9c-0d35-e3c0-4e3654bf552c" executionId="2bc22e3d-fdb7-4e7e-93d0-dfefcae54a76" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="08e168e5-b286-c109-8173-e710a9a6f7fa" executionId="77b06823-d7d3-4eb2-89bc-85b976d88f33" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7471ba85-d2e4-4cb9-fef2-9ce4ced60bb3" executionId="fa46d618-e5b9-4adf-9578-eed8c5992482" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="df448686-99a8-4c49-e9c5-9ca72f9b2a05" executionId="c9e3e2a5-d7dd-4080-8283-30a18f526f64" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0f5a6e1c-c5ce-2587-d2f5-40f8475dcd6b" executionId="08ec8cac-237b-4714-9c43-7f1f8df4df5a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="526a4a72-7092-7cfc-1012-e55fe0f574aa" executionId="e88cd193-3863-4a81-9a3d-2a1365414b75" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f13c7b49-896d-43fa-5e47-c7555e08d3a5" executionId="1ba1b6b2-5aa4-49d6-b6f3-22ec688d4f24" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="23258628-5b72-dd37-e0da-978b41af5998" executionId="845d709c-87b0-4cd6-ac03-8bff26b7b5ae" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7f4b8000-5cf5-1dd0-a648-f5842761d401" executionId="667669e6-a52a-4967-9ceb-2eb6d0a7ac7c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="477778a8-7869-4315-4cbd-6b17b39dd368" executionId="15e435d3-60e0-43cc-aa13-9a58eeef3034" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f61bce69-2ddf-35bc-21c3-6f65a8dfff27" executionId="ea7ef9bd-fd09-46b9-9869-dd2c060bda1a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e1546be9-2bd2-4048-f7a6-af2f21d1a7b3" executionId="a213c18c-23f3-4c8d-9b90-b19d2d811f6d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d1e0aced-82a8-e6a1-5175-a41b3b31c5dc" executionId="2ac453d3-7dc2-423c-87ad-a4d4383ff507" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="96db706d-8f8a-219e-8e75-73cc243ea3a9" executionId="dbd9c5a5-d587-4886-a33d-82a7dea7cfdc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6ae2767a-b55f-3a29-b58d-b5fad78ce241" executionId="8937a55a-41b0-45fe-8f43-6eebafc5acfd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c284ffcd-37f0-066c-ed2a-4484f652c78c" executionId="18340d9b-d1fc-47b3-aaee-289a124da1b4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="efc04750-fc22-3896-c91b-2faed696ceed" executionId="152ac955-56c3-4de5-a4ca-837f35b9bf1b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3793f117-b6dd-7027-3e85-835f05c94f7e" executionId="49bd5ff7-2e36-49c7-b025-c31f8dd7d920" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="18" executed="17" passed="17" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>NUnit Adapter 5.0.0.0: Test execution started&#xD;
+Running all tests in D:\KiemThu\SauceDemo.Tests\bin\Debug\net10.0\SauceDemo.Tests.dll&#xD;
+   NUnit3TestExecutor discovered 17 of 18 NUnit test cases using Current Discovery mode, Non-Explicit run&#xD;
+2026-11-14T16:35:41.5181883Z START DynamicLoading&#xD;
+2026-11-14T16:35:41.5180925Z START AddBackpack&#xD;
+2026-11-14T16:35:43.8401125Z END Passed &#xD;
+2026-11-14T16:35:44.0423837Z START Login_valid&#xD;
+2026-11-14T16:35:45.9562822Z Login case: valid&#xD;
+2026-11-14T16:35:46.2473261Z END Passed &#xD;
+2026-11-14T16:35:46.5782221Z START Login_slow&#xD;
+2026-11-14T16:35:48.3586015Z Login case: slow&#xD;
+2026-11-14T16:35:51.6234698Z END Passed &#xD;
+DynamicLoadingWithoutWait: Intentional failure: capture Lab 3 evidence separately&#xD;
+2026-11-14T16:35:51.8907198Z START Iframe&#xD;
+2026-11-14T16:35:53.7176024Z END Passed &#xD;
+2026-11-14T16:35:53.9800013Z START Login_locked&#xD;
+2026-11-14T16:35:55.6651230Z Login case: locked&#xD;
+2026-11-14T16:35:55.8877697Z END Passed &#xD;
+2026-11-14T16:35:56.0615647Z START Login_wrong-password&#xD;
+2026-11-14T16:35:57.9490369Z Login case: wrong-password&#xD;
+2026-11-14T16:35:57.9677116Z END Passed &#xD;
+2026-11-14T16:35:58.2993176Z END Passed &#xD;
+2026-11-14T16:35:58.3178718Z START JavaScriptAlert("jsAlert","You successfully clicked an alert")&#xD;
+2026-11-14T16:35:58.5113520Z START Login_empty-user&#xD;
+2026-11-14T16:36:00.4389172Z Login case: empty-user&#xD;
+2026-11-14T16:36:00.6620766Z END Passed &#xD;
+2026-11-14T16:36:00.8248666Z START Login_empty-password&#xD;
+2026-11-14T16:36:03.1245211Z Login case: empty-password&#xD;
+2026-11-14T16:36:03.4774525Z END Passed &#xD;
+2026-11-14T16:36:03.8018195Z END Passed &#xD;
+2026-11-14T16:36:04.1739478Z START Login_both-empty&#xD;
+2026-11-14T16:36:04.1841915Z START JavaScriptAlert("jsConfirm","You clicked: Cancel")&#xD;
+2026-11-14T16:36:07.0647838Z Login case: both-empty&#xD;
+2026-11-14T16:36:08.0928040Z END Passed &#xD;
+2026-11-14T16:36:08.5468974Z START Login_unknown-user&#xD;
+2026-11-14T16:36:10.4295720Z END Passed &#xD;
+2026-11-14T16:36:10.7421653Z Login case: unknown-user&#xD;
+2026-11-14T16:36:11.1579287Z END Passed &#xD;
+2026-11-14T16:36:11.6024195Z START JavaScriptAlert("jsPrompt","You entered: Hello Lab3")&#xD;
+2026-11-14T16:36:11.8422064Z START PageTitle&#xD;
+2026-11-14T16:36:14.0219651Z END Passed &#xD;
+Swag Labs&#xD;
+&#xD;
+2026-11-14T16:36:17.2390663Z END Passed &#xD;
+2026-11-14T16:36:19.1101335Z START PricesAscending&#xD;
+2026-11-14T16:36:21.3851098Z END Passed &#xD;
+2026-11-14T16:36:21.5763175Z START Products&#xD;
+2026-11-14T16:36:23.8835772Z END Passed &#xD;
+Sauce Labs Backpack: $29.99&#xD;
+Sauce Labs Bike Light: $9.99&#xD;
+Sauce Labs Bolt T-Shirt: $15.99&#xD;
+Sauce Labs Fleece Jacket: $49.99&#xD;
+Sauce Labs Onesie: $7.99&#xD;
+Test.allTheThings() T-Shirt (Red): $15.99&#xD;
+&#xD;
+NUnit Adapter 5.0.0.0: Test execution complete&#xD;
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>

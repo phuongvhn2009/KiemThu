@@ -9,12 +9,13 @@ public class LoginPage(IWebDriver driver, int timeout) : BasePage(driver, timeou
     private readonly By submit = By.Id("login-button");
     private readonly By error = By.CssSelector("[data-test='error']");
     public string Title => Driver.Title;
-    public void Open(string url) { Driver.Navigate().GoToUrl(url); Find(username); }
-    public void Login(string user, string secret)
+    public void Open(string url) { Driver.Navigate().GoToUrl(url); Tim(username); }
+    public InventoryPage DangNhap(string user, string secret)
     {
-        Find(username).SendKeys(user);
-        Find(password).SendKeys(secret);
-        Find(submit).Click();
+        Tim(username).SendKeys(user);
+        Tim(password).SendKeys(secret);
+        Tim(submit).Click();
+        return new InventoryPage(Driver, Timeout);
     }
-    public string Error => Find(error).Text;
+    public string LayThongBaoLoi() => Tim(error).Text;
 }

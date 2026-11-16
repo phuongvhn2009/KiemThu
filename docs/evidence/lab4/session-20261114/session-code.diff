@@ -1,0 +1,37 @@
+--- before/SauceDemo.Tests/Pages/InventoryPage.cs
++++ after/SauceDemo.Tests/Pages/InventoryPage.cs
+@@ -36,5 +36,9 @@
+         .Select(p => decimal.Parse(p.Price.TrimStart('$'), CultureInfo.InvariantCulture)).ToArray();
+     public string Title => Tim(title).Text;
+     public void AddBackpack() => Tim(backpack).Click();
+-    public void OpenCart() => Tim(cart).Click();
++    public CartPage OpenCart()
++    {
++        Tim(cart).Click();
++        return new CartPage(Driver, Timeout);
++    }
+ }
+--- before/SauceDemo.Tests/Pages/LabPage.cs
++++ after/SauceDemo.Tests/Pages/LabPage.cs
+@@ -48,8 +48,7 @@
+     }
+     public string EditFrame(string text)
+     {
+-        Tim(frame);
+-        Driver.SwitchTo().Frame("mce_0_ifr");
++        Driver.SwitchTo().Frame(Tim(frame));
+         try
+         {
+             var editor = Tim(editorBody);
+--- before/SauceDemo.Tests/Tests/UiTests.cs
++++ after/SauceDemo.Tests/Tests/UiTests.cs
+@@ -43,8 +43,7 @@
+         var inventory = Login.DangNhap("standard_user", "secret_sauce");
+         Assert.That(inventory.Title, Is.EqualTo("Products"));
+         inventory.AddBackpack();
+-        inventory.OpenCart();
+-        var cart = new CartPage(Driver, Config.TimeoutSeconds);
++        var cart = inventory.OpenCart();
+         Assert.Multiple(() =>
+         {
+             Assert.That(cart.Product, Is.EqualTo("Sauce Labs Backpack"));
