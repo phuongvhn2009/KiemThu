@@ -35,7 +35,6 @@ public class InventoryPage(IWebDriver driver, int timeout) : BasePage(driver, ti
         }
         catch (WebDriverTimeoutException) { return false; }
     }
-    public string Url => Driver.Url;
     public InventoryPage SapXep(string value)
     {
         new SelectElement(Tim(sort)).SelectByValue(value);
