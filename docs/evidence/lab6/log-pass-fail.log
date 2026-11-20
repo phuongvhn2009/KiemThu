@@ -1,0 +1,60 @@
+Test run for D:\KiemThu\SauceDemo.Tests\bin\Debug\net10.0\SauceDemo.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+D:\KiemThu\SauceDemo.Tests\bin\Debug\net10.0\SauceDemo.Tests.dll
+NUnit Adapter 5.0.0.0: Test execution started
+Running selected tests in D:\KiemThu\SauceDemo.Tests\bin\Debug\net10.0\SauceDemo.Tests.dll
+   NUnit3TestExecutor discovered 1 of 2 NUnit test cases using Current Discovery mode, Non-Explicit run
+2026-11-20 21:25:58.992 [INFO] [T19] SUITE START SauceDemo.Tests
+2026-11-20 21:25:59.015 [INFO] [T15] START PageTitle | Fixture=LoginTests | Browser=Chrome | BaseUrl=https://www.saucedemo.com/
+2026-11-20 21:26:00.116 [INFO] [T15] OK PageTitle (1111ms) | URL=https://www.saucedemo.com/
+Swag Labs
+
+2026-11-20 21:26:00.329 [INFO] [T19] SUITE END | Reports exported: HTML=D:\KiemThu\TestResults\lab6\artifacts\reports\ketqua-baocao.html | Excel=D:\KiemThu\TestResults\lab6\artifacts\reports\ketqua-baocao.xlsx | PDF=D:\KiemThu\TestResults\lab6\artifacts\reports\ketqua-baocao.pdf
+NUnit Adapter 5.0.0.0: Test execution complete
+  Passed PageTitle [1 s]
+  Standard Output Messages:
+ Swag Labs
+
+
+
+Test Run Successful.
+Total tests: 1
+     Passed: 1
+ Total time: 1.8887 Seconds
+Results File: D:\KiemThu\docs\evidence\lab6\log-pass-fail.trx
+
+--- Explicit failure run (DynamicLoadingWithoutWait) ---
+Test run for D:\KiemThu\SauceDemo.Tests\bin\Debug\net10.0\SauceDemo.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+D:\KiemThu\SauceDemo.Tests\bin\Debug\net10.0\SauceDemo.Tests.dll
+NUnit Adapter 5.0.0.0: Test execution started
+Running selected tests in D:\KiemThu\SauceDemo.Tests\bin\Debug\net10.0\SauceDemo.Tests.dll
+   NUnit3TestExecutor discovered 1 of 1 NUnit test cases using Current Discovery mode, Explicit run
+2026-11-20 21:26:01.688 [INFO] [T19] SUITE START SauceDemo.Tests
+2026-11-20 21:26:01.714 [INFO] [T15] START DynamicLoadingWithoutWait | Fixture=LabTests | Browser=Chrome | BaseUrl=https://www.saucedemo.com/
+2026-11-20 21:26:06.059 [ERROR] [T15] ROT DynamicLoadingWithoutWait (4280ms) | URL=https://the-internet.herokuapp.com/dynamic_loading/2 | Error=OpenQA.Selenium.NoSuchElementException : no such element: Unable to locate element: {"method":"css selector","selector":"#finish"} (Session info: chrome=158.0.8127.36); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception | Screenshot=D:\KiemThu\TestResults\lab6\artifacts\35813812bc7049ccad4d2a97972b68ce\DynamicLoadingWithoutWait.png
+2026-11-20 21:26:06.248 [INFO] [T19] SUITE END | Reports exported: HTML=D:\KiemThu\TestResults\lab6\artifacts\reports\ketqua-baocao.html | Excel=D:\KiemThu\TestResults\lab6\artifacts\reports\ketqua-baocao.xlsx | PDF=D:\KiemThu\TestResults\lab6\artifacts\reports\ketqua-baocao.pdf
+NUnit Adapter 5.0.0.0: Test execution complete
+  Failed DynamicLoadingWithoutWait [4 s]
+  Error Message:
+   OpenQA.Selenium.NoSuchElementException : no such element: Unable to locate element: {"method":"css selector","selector":"#finish"}
+  (Session info: chrome=158.0.8127.36); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+  Stack Trace:
+     at OpenQA.Selenium.WebDriver.UnpackAndThrowOnError(Response errorResponse, String commandToExecute)
+   at OpenQA.Selenium.WebDriver.ExecuteAsync(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.WebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.WebDriver.FindElement(String mechanism, String value)
+   at OpenQA.Selenium.By.<.ctor>b__6_0(ISearchContext context)
+   at OpenQA.Selenium.By.FindElement(ISearchContext context)
+   at OpenQA.Selenium.WebDriver.FindElement(By by)
+   at SauceDemo.Tests.Pages.LabPage.Finish(Boolean wait) in D:\KiemThu\SauceDemo.Tests\Pages\LabPage.cs:line 20
+   at SauceDemo.Tests.Tests.LabTests.DynamicLoadingWithoutWait() in D:\KiemThu\SauceDemo.Tests\Tests\LabTests.cs:line 29
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+
+
+Total tests: 1
+     Failed: 1
+ Total time: 5.1028 Seconds
+Test Run Failed.
+Results File: D:\KiemThu\docs\evidence\lab6\log-fail-explicit.trx

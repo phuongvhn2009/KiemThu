@@ -1,0 +1,5 @@
+Test run for D:\KiemThu\SauceDemo.Tests\bin\Debug\net10.0\SauceDemo.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+Results File: D:\KiemThu\docs\evidence\lab6\smoke.trx
+
+Passed!  - Failed:     0, Passed:     4, Skipped:     0, Total:     4, Duration: 5 s - SauceDemo.Tests.dll (net10.0)

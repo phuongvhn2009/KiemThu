@@ -1,0 +1,371 @@
+﻿<html>
+<head><meta charset="utf-8"/>
+<title>Test Report</title>
+<style type="text/css">
+html,
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+body {
+  padding: 2rem 1rem;
+  font-size: 0.85rem;
+}
+#html-content {
+  margin: 0 auto;
+  max-width: 70rem;
+}
+header {
+  display: flex;
+  align-items: center;
+}
+#title {
+  margin: 0;
+  flex-grow: 1;
+}
+#logo {
+  height: 4rem;
+}
+#timestamp {
+  color: #777;
+  margin-top: 0.5rem;
+}
+
+#summary {
+  color: #333;
+  margin: 2rem 0;
+  display: flex;
+  font-family: monospace;
+  font-size: 1rem;
+}
+#summary > div {
+  margin-right: 2rem;
+  background: #eee;
+  padding: 1rem;
+  min-width: 15rem;
+}
+#summary > div:last-child {
+  margin-right: 0;
+}
+@media only screen and (max-width: 720px) {
+  #summary {
+    flex-direction: column;
+  }
+  #summary > div {
+    margin-right: 0;
+    margin-top: 2rem;
+  }
+  #summary > div:first-child {
+    margin-top: 0;
+  }
+}
+
+.summary-total {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.summary-passed {
+  color: #4f8a10;
+  border-left: 0.4rem solid #4f8a10;
+  padding-left: 0.5rem;
+}
+.summary-failed,
+.summary-obsolete-snapshots {
+  color: #d8000c;
+  border-left: 0.4rem solid #d8000c;
+  padding-left: 0.5rem;
+}
+.summary-pending {
+  color: #9f6000;
+  border-left: 0.4rem solid #9f6000;
+  padding-left: 0.5rem;
+}
+.summary-empty {
+  color: #999;
+  border-left: 0.4rem solid #999;
+}
+
+.test-result {
+  padding: 1rem;
+  margin-bottom: 0.25rem;
+}
+.test-result:last-child {
+  border: 0;
+}
+.test-result.passed {
+  background-color: #dff2bf;
+  color: #4f8a10;
+}
+.test-result.failed {
+  background-color: #ffbaba;
+  color: #d8000c;
+}
+.test-result.pending {
+  background-color: #ffdf61;
+  color: #9f6000;
+}
+
+.test-info {
+  display: flex;
+  justify-content: space-between;
+}
+.test-method-name {
+  width: 20%;
+  text-align: left;
+  font-weight: bold;
+  word-break: break-word;
+}
+.test-title {
+  width: 40%;
+  text-align: left;
+  font-style: italic;
+}
+.test-status {
+  width: 20%;
+  text-align: right;
+}
+.test-duration {
+  width: 10%;
+  text-align: right;
+  font-size: 0.75rem;
+}
+
+.test-class-container {
+  margin-bottom: 2rem;
+}
+.test-class-info {
+  padding: 1rem;
+  background-color: #eee;
+  color: #777;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+.test-class-info .class-name {
+  word-break: break-all;
+  flex-grow: 1;
+  font-family: monospace;
+  font-size: 1rem;
+}
+</style>
+</head>
+<body>
+<div id="html-content">
+    <header>
+        <h1 id="title">Test Report</h1>
+    </header>
+    <div id="metadata-container">
+        <div id="timestamp">Started: 2026-11-20T21:26:07.1640759+07:00</div>
+        <div id="summary">
+            <div id="suite-summary">
+                <div class="summary-total">Test Classes (4)</div>
+            </div>
+            <div id="test-summary">
+                <div class="summary-total">Test Cases (21)</div>
+                <div class="summary-passed">20 passed</div>
+                <div class="summary-failed summary-empty">0 failed</div>
+                <div class="summary-pending summary-empty">0 pending</div>
+            </div>
+        </div>
+    </div>
+  <div class="test-class-container">
+    <div class="test-class-info">
+        <div class="class-name">SauceDemo.Tests.Tests.CartTests</div>
+    </div>
+    <div>
+        <div class="test-result Passed">
+            <div class="test-info">
+              <div class="test-method-name">AddBackpack</div>
+              <div class="test-title">AddBackpack</div>
+              <div class="test-status">Passed</div>
+              <div class="test-duration">00:00:06.2094480</div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <div class="test-class-container">
+    <div class="test-class-info">
+        <div class="class-name">SauceDemo.Tests.Tests.InventoryTests</div>
+    </div>
+    <div>
+        <div class="test-result Passed">
+            <div class="test-info">
+              <div class="test-method-name">PricesAscending</div>
+              <div class="test-title">PricesAscending</div>
+              <div class="test-status">Passed</div>
+              <div class="test-duration">00:00:04.5411940</div>
+            </div>
+        </div>
+        <div class="test-result Passed">
+            <div class="test-info">
+              <div class="test-method-name">Products</div>
+              <div class="test-title">Products</div>
+              <div class="test-status">Passed</div>
+              <div class="test-duration">00:00:02.4381810</div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <div class="test-class-container">
+    <div class="test-class-info">
+        <div class="class-name">SauceDemo.Tests.Tests.LabTests</div>
+    </div>
+    <div>
+        <div class="test-result Passed">
+            <div class="test-info">
+              <div class="test-method-name">DynamicLoading</div>
+              <div class="test-title">DynamicLoading</div>
+              <div class="test-status">Passed</div>
+              <div class="test-duration">00:00:11.5233010</div>
+            </div>
+        </div>
+        <div class="test-result NotExecuted">
+            <div class="test-info">
+              <div class="test-method-name">DynamicLoadingWithoutWait</div>
+              <div class="test-title">DynamicLoadingWithoutWait</div>
+              <div class="test-status">NotExecuted</div>
+              <div class="test-duration">00:00:00.0007860</div>
+            </div>
+        </div>
+        <div class="test-result Passed">
+            <div class="test-info">
+              <div class="test-method-name">Iframe</div>
+              <div class="test-title">Iframe</div>
+              <div class="test-status">Passed</div>
+              <div class="test-duration">00:00:05.5768720</div>
+            </div>
+        </div>
+        <div class="test-result Passed">
+            <div class="test-info">
+              <div class="test-method-name">JavaScriptAlert(&quot;jsAlert&quot;,&quot;You successfully clicked an alert&quot;)</div>
+              <div class="test-title">JavaScriptAlert(&quot;jsAlert&quot;,&quot;You successfully clicked an alert&quot;)</div>
+              <div class="test-status">Passed</div>
+              <div class="test-duration">00:00:04.7169489</div>
+            </div>
+        </div>
+        <div class="test-result Passed">
+            <div class="test-info">
+              <div class="test-method-name">JavaScriptAlert(&quot;jsConfirm&quot;,&quot;You clicked: Cancel&quot;)</div>
+              <div class="test-title">JavaScriptAlert(&quot;jsConfirm&quot;,&quot;You clicked: Cancel&quot;)</div>
+              <div class="test-status">Passed</div>
+              <div class="test-duration">00:00:04.6512120</div>
+            </div>
+        </div>
+        <div class="test-result Passed">
+            <div class="test-info">
+              <div class="test-method-name">JavaScriptAlert(&quot;jsPrompt&quot;,&quot;You entered: Hello Lab3&quot;)</div>
+              <div class="test-title">JavaScriptAlert(&quot;jsPrompt&quot;,&quot;You entered: Hello Lab3&quot;)</div>
+              <div class="test-status">Passed</div>
+              <div class="test-duration">00:00:04.8346130</div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <div class="test-class-container">
+    <div class="test-class-info">
+        <div class="class-name">SauceDemo.Tests.Tests.LoginTests</div>
+    </div>
+    <div>
+        <div class="test-result Passed">
+            <div class="test-info">
+              <div class="test-method-name">DangNhap_00_standard_user</div>
+              <div class="test-title">DangNhap_00_standard_user</div>
+              <div class="test-status">Passed</div>
+              <div class="test-duration">00:00:03.6625650</div>
+            </div>
+        </div>
+        <div class="test-result Passed">
+            <div class="test-info">
+              <div class="test-method-name">DangNhap_01_performance_glitch_user</div>
+              <div class="test-title">DangNhap_01_performance_glitch_user</div>
+              <div class="test-status">Passed</div>
+              <div class="test-duration">00:00:08.1472710</div>
+            </div>
+        </div>
+        <div class="test-result Passed">
+            <div class="test-info">
+              <div class="test-method-name">DangNhap_02_locked_out_user</div>
+              <div class="test-title">DangNhap_02_locked_out_user</div>
+              <div class="test-status">Passed</div>
+              <div class="test-duration">00:00:05.3919180</div>
+            </div>
+        </div>
+        <div class="test-result Passed">
+            <div class="test-info">
+              <div class="test-method-name">DangNhap_03_standard_user</div>
+              <div class="test-title">DangNhap_03_standard_user</div>
+              <div class="test-status">Passed</div>
+              <div class="test-duration">00:00:05.3803390</div>
+            </div>
+        </div>
+        <div class="test-result Passed">
+            <div class="test-info">
+              <div class="test-method-name">DangNhap_04_</div>
+              <div class="test-title">DangNhap_04_</div>
+              <div class="test-status">Passed</div>
+              <div class="test-duration">00:00:05.2461600</div>
+            </div>
+        </div>
+        <div class="test-result Passed">
+            <div class="test-info">
+              <div class="test-method-name">DangNhap_05_standard_user</div>
+              <div class="test-title">DangNhap_05_standard_user</div>
+              <div class="test-status">Passed</div>
+              <div class="test-duration">00:00:05.0499990</div>
+            </div>
+        </div>
+        <div class="test-result Passed">
+            <div class="test-info">
+              <div class="test-method-name">DangNhap_06_</div>
+              <div class="test-title">DangNhap_06_</div>
+              <div class="test-status">Passed</div>
+              <div class="test-duration">00:00:04.9233860</div>
+            </div>
+        </div>
+        <div class="test-result Passed">
+            <div class="test-info">
+              <div class="test-method-name">DangNhap_07_unknown</div>
+              <div class="test-title">DangNhap_07_unknown</div>
+              <div class="test-status">Passed</div>
+              <div class="test-duration">00:00:04.9833660</div>
+            </div>
+        </div>
+        <div class="test-result Passed">
+            <div class="test-info">
+              <div class="test-method-name">DangNhap_08_ standard_user </div>
+              <div class="test-title">DangNhap_08_ standard_user </div>
+              <div class="test-status">Passed</div>
+              <div class="test-duration">00:00:04.9664830</div>
+            </div>
+        </div>
+        <div class="test-result Passed">
+            <div class="test-info">
+              <div class="test-method-name">DangNhap_09_&#39; OR 1=1 --</div>
+              <div class="test-title">DangNhap_09_&#39; OR 1=1 --</div>
+              <div class="test-status">Passed</div>
+              <div class="test-duration">00:00:05.0170009</div>
+            </div>
+        </div>
+        <div class="test-result Passed">
+            <div class="test-info">
+              <div class="test-method-name">DangNhap_10_standard_user</div>
+              <div class="test-title">DangNhap_10_standard_user</div>
+              <div class="test-status">Passed</div>
+              <div class="test-duration">00:00:05.0509350</div>
+            </div>
+        </div>
+        <div class="test-result Passed">
+            <div class="test-info">
+              <div class="test-method-name">PageTitle</div>
+              <div class="test-title">PageTitle</div>
+              <div class="test-status">Passed</div>
+              <div class="test-duration">00:00:01.7249480</div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+</body>

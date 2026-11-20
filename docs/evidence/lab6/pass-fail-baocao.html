@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Báo cáo kiểm thử tự động - SauceDemo (NUnit + Selenium)</title>
+  <style>
+    :root { --bg:#0f172a; --card:#1e293b; --line:#334155; --text:#f8fafc; --muted:#94a3b8; --pass-bg:#14532d; --pass-fg:#86efac; --fail-bg:#7f1d1d; --fail-fg:#fca5a5; --accent:#38bdf8; }
+    * { box-sizing:border-box; }
+    body { margin:0; padding:24px; font-family:'Segoe UI',system-ui,-apple-system,sans-serif; background:var(--bg); color:var(--text); }
+    .wrap { max-width:1440px; margin:0 auto; }
+    h1 { margin:0 0 6px; font-size:24px; }
+    .sub { color:var(--muted); font-size:13px; margin-bottom:20px; }
+    .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px; margin-bottom:20px; }
+    .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px 16px; }
+    .card .k { font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; }
+    .card .v { font-size:22px; font-weight:700; margin-top:4px; }
+    .v.pass { color:var(--pass-fg); } .v.fail { color:var(--fail-fg); }
+    .toolbar { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:14px; }
+    .btn { background:var(--card); color:var(--text); border:1px solid var(--line); border-radius:8px; padding:7px 14px; cursor:pointer; font-size:13px; }
+    .btn.active { border-color:var(--accent); color:var(--accent); }
+    .tbl-wrap { overflow-x:auto; background:var(--card); border:1px solid var(--line); border-radius:10px; }
+    table { width:100%; border-collapse:collapse; font-size:13px; }
+    th, td { padding:10px 12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+    th { background:#0b1324; color:#cbd5e1; position:sticky; top:0; white-space:nowrap; }
+    tr:hover td { background:rgba(56,189,248,0.06); }
+    .badge { display:inline-block; padding:2px 9px; border-radius:999px; font-weight:700; font-size:12px; }
+    .badge.PASS { background:var(--pass-bg); color:var(--pass-fg); }
+    .badge.FAIL { background:var(--fail-bg); color:var(--fail-fg); }
+    a { color:var(--accent); text-decoration:none; word-break:break-all; } a:hover { text-decoration:underline; }
+    .mono { font-family:Consolas,'Courier New',monospace; font-size:12px; }
+    .err { color:#fca5a5; max-width:320px; white-space:pre-wrap; word-break:break-word; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Báo cáo kết quả kiểm thử tự động (NUnit + Selenium)</h1>
+  <div class="sub">Trình duyệt: <strong>Chrome</strong> &middot; Base URL: <a href="https://www.saucedemo.com/" target="_blank" rel="noopener">https://www.saucedemo.com/</a> &middot; Hoàn tất (UTC): 2026-11-20 14:26:06</div>
+  <div class="cards">
+    <div class="card"><div class="k">Tổng số ca</div><div class="v">1</div></div>
+    <div class="card"><div class="k">PASS</div><div class="v pass">0</div></div>
+    <div class="card"><div class="k">FAIL</div><div class="v fail">1</div></div>
+    <div class="card"><div class="k">Tỷ lệ đạt</div><div class="v">0.0%</div></div>
+    <div class="card"><div class="k">Tổng thời gian</div><div class="v">4.54s</div></div>
+  </div>
+  <div class="toolbar">
+    <button class="btn active" onclick="filterRows('ALL', this)">Tất cả (1)</button>
+    <button class="btn" onclick="filterRows('PASS', this)">PASS (0)</button>
+    <button class="btn" onclick="filterRows('FAIL', this)">FAIL (1)</button>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr>
+        <th>STT</th><th>Tên ca test</th><th>Fixture</th><th>Category</th><th>Kịch bản kiểm thử</th><th>Tài khoản</th><th>Link URL</th><th>Kết quả</th><th>Thời gian (ms)</th><th>Thông báo lỗi</th><th>Screenshot lỗi</th>
+      </tr></thead>
+      <tbody>
+      <tr data-status="FAIL">
+        <td>1</td>
+        <td class="mono">DynamicLoadingWithoutWait</td>
+        <td>LabTests</td>
+        <td>Lab, Slow</td>
+        <td>Kich ban co y khong cho #finish de chung minh loi NoSuchElementException va log ERROR</td>
+        <td class="mono">-</td>
+        <td class="mono"><a href="https://the-internet.herokuapp.com/dynamic_loading/2" target="_blank" rel="noopener">https://the-internet.herokuapp.com/dynamic_loading/2</a></td>
+        <td><span class="badge FAIL">FAIL</span></td>
+        <td>4280</td>
+        <td class="err">OpenQA.Selenium.NoSuchElementException : no such element: Unable to locate element: {&quot;method&quot;:&quot;css selector&quot;,&quot;selector&quot;:&quot;#finish&quot;} (Session info: chrome=158.0.8127.36); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception</td>
+        <td><a class="mono" href="file:///D:/KiemThu/TestResults/lab6/artifacts/35813812bc7049ccad4d2a97972b68ce/DynamicLoadingWithoutWait.png" target="_blank" rel="noopener">DynamicLoadingWithoutWait.png</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script>
+function filterRows(status, btn) {
+  document.querySelectorAll('.toolbar .btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('tbody tr').forEach(tr => {
+    tr.style.display = (status === 'ALL' || tr.dataset.status === status) ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>

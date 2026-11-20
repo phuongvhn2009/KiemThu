@@ -8,6 +8,7 @@ public abstract class BasePage(IWebDriver driver, int timeout)
     protected int Timeout { get; } = timeout;
     protected WebDriverWait Wait { get; } = new(driver, TimeSpan.FromSeconds(timeout));
     protected IWebDriver Driver { get; } = driver;
+    public string Url => Driver.Url;
     protected IWebElement Tim(By locator) => Wait.Until(d =>
     {
         try

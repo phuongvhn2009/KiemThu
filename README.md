@@ -1,6 +1,38 @@
 ﻿
 # SauceDemo - NUnit + Selenium
 
+## Lab 6 — Test Runner, báo cáo, logging & chạy song song
+
+Nâng cấp trực tiếp từ Lab 5 trên project chung `SauceDemo.Tests` (giữ nguyên POM Lab 4, dữ liệu `Data/users.json` Lab 5, không thêm Checkout và không thêm dependency NuGet ngoài). Xem đầy đủ bảng Kịch bản kiểm thử, đối chiếu nhận xét giảng viên và thẩm định AI tại [docs/lab6.md](docs/lab6.md).
+
+- **Nhận xét giảng viên & Tổ chức UseCase (`Tests/`)**: tách thành `LoginTests.cs`, `InventoryTests.cs`, `CartTests.cs`, `LabTests.cs` và `Tests/AssemblyInfo.cs`; tách truy xuất dữ liệu sang `Data/AccountRepository.cs`; kiểm tra chặt hiển thị Inventory (`DaHienThi()`, `"Products"`, `/inventory.html`, 6 sản phẩm) và bổ sung `BasePage.Url` cùng kiểm tra URL ở Login/Inventory/Cart/Lab.
+- **Phần A — `[Category]`**: gắn các nhóm `Smoke`, `Login`, `Inventory`, `Cart`, `Lab`, `Slow` để chạy chọn lọc `--filter "Category=Smoke"` hoặc loại trừ `--filter "Category!=Slow"`.
+- **Phần B — Logging vào `BaseTest`**: thêm `Utilities/Log.cs` (`Info`, `Error` kèm timestamp và thread id); mọi dòng `START` ở `[SetUp]` và `OK` / `ROT` ở `[TearDown]` xuất phát từ `Core/BaseTest.cs`, **không gọi log trong file test**.
+- **Phần C — Báo cáo HTML, Excel, PDF & Screenshot lỗi**: `Utilities/TestReportCollector.cs` + `Core/TestSuiteHooks.cs` (`[SetUpFixture]`) tự động xuất `ketqua-baocao.html`, `ketqua-baocao.xlsx` và `ketqua-baocao.pdf` (gồm trạng thái PASS/FAIL, tài khoản, Link URL và đường dẫn ảnh lỗi từ `ScreenshotHelper`) song song với xuất `ketqua.trx` + `trxlog2html`.
+- **Phần D — Chạy song song & Thread-safety**: bật `[assembly: Parallelizable(ParallelScope.Fixtures)]` và `[assembly: LevelOfParallelism(4)]` trên 4 fixture độc lập. Framework thread-safe vì `Driver`, `Config`, `Login`, `logFilePath` và `stopwatch` đều là **instance field** của từng test instance trên `BaseTest` (không có `Driver` `static` dùng chung), mỗi test dùng thư mục `Guid` riêng và `TestReportCollector` thu thập kết quả bằng `ConcurrentBag`.
+- **Phần E — AI sinh & thẩm định (ô Password SauceDemo)**: lưu prompt và 8 ca + `Assert.That` do AI đề xuất trong [docs/lab6.md](docs/lab6.md), chỉ ra 3 ca không dùng được (chính sách độ phức tạp >= 8 ký tự, khóa tạm 15 phút sau 5 lần sai, tự trim khoảng trắng đầu/cuối kỳ vọng `true`).
+
+- **Kết quả kiểm chứng thực tế (Chrome 158 headless, 20/11/2026)**: Build **0 warning / 0 error**; `Category=Smoke` **4/4 PASS (6.11s)**; `Category!=Slow` **18/18 PASS (52.95s)**; log `[INFO]` (`PageTitle` PASS) & `[ERROR]` (`DynamicLoadingWithoutWait` FAIL cố ý kèm ảnh lỗi [DynamicLoadingWithoutWait.png](docs/evidence/lab6/screenshots/DynamicLoadingWithoutWait.png)); toàn bộ suite **20/20 PASS** xuất đủ [ketqua.html](docs/evidence/lab6/ketqua.html) (`trxlog2html`) + [ketqua-baocao.html](docs/evidence/lab6/ketqua-baocao.html) + [ketqua-baocao.xlsx](docs/evidence/lab6/ketqua-baocao.xlsx) + [ketqua-baocao.pdf](docs/evidence/lab6/ketqua-baocao.pdf); chạy **tuần tự 92.88s vs song song 60.67s** (**nhanh hơn 32.21s = 34.7% / 1.53x**, kết quả **20/20 PASS** trùng khớp hoàn toàn). Xem [hồ sơ Lab 6](docs/evidence/lab6/README.md) và ảnh minh chứng: [Smoke](screenshots/lab6-category-smoke.png), [Category!=Slow](screenshots/lab6-category-not-slow.png), [Log PASS/FAIL](screenshots/lab6-log.png), [HTML trxlog2html](screenshots/lab6-html-report.png), [Báo cáo PASS/FAIL+URL](screenshots/lab6-report-custom.png), [Tuần tự](screenshots/lab6-sequential.png), [Song song](screenshots/lab6-parallel.png).
+
+### Chạy Lab 6
+
+```powershell
+powershell.exe -ExecutionPolicy Bypass -File Checks/run_lab6_evidence.ps1
+```
+
+Hoặc chạy kiểm tra chi tiết & xác minh toàn bộ chứng cứ Lab 6:
+
+```powershell
+dotnet build SauceDemo.Tests
+dotnet test SauceDemo.Tests --filter "Category=Smoke"
+dotnet test SauceDemo.Tests --filter "Category!=Slow"
+dotnet test SauceDemo.Tests --filter "FullyQualifiedName=SauceDemo.Tests.Tests.LoginTests.PageTitle|FullyQualifiedName=SauceDemo.Tests.Tests.LabTests.DynamicLoadingWithoutWait" -l "console;verbosity=detailed"
+dotnet test SauceDemo.Tests --filter "FullyQualifiedName=SauceDemo.Tests.Tests.LabTests.DynamicLoadingWithoutWait" -l "console;verbosity=detailed"
+dotnet test SauceDemo.Tests --logger "trx;LogFileName=ketqua.trx" --results-directory docs/evidence/lab6
+trxlog2html -i docs/evidence/lab6/ketqua.trx -o docs/evidence/lab6/ketqua.html
+dotnet run --project Checks/Lab5Checks.csproj -- --require-evidence
+```
+
 ## Lab 5 — Framework, cấu hình và dữ liệu ngoài
 
 Phần này là hướng dẫn cho source hiện tại; hướng dẫn Cốc Cốc và cấu trúc Framework bên dưới thuộc các Lab trước. Nâng cấp trực tiếp project SauceDemo.Tests, không thêm Checkout.

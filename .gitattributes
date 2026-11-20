@@ -1,3 +1,4 @@
 # Keep captured evidence bytes intact for SHA-256 verification.
 docs/evidence/lab4/** -text
 docs/evidence/lab5/** -text
+docs/evidence/lab6/** -text
