@@ -29,9 +29,9 @@ public class LabTests : BaseTest
         Assert.That(page.Finish(false), Is.EqualTo("Hello World!"));
     }
 
-    [TestCase("jsAlert", "You successfully clicked an alert")]
-    [TestCase("jsConfirm", "You clicked: Cancel")]
-    [TestCase("jsPrompt", "You entered: Hello Lab3")]
+    [TestCase("jsAlert", "You successfully clicked an alert", Description = "Kich ban xu ly JS Alert (Accept) va kiem tra #result")]
+    [TestCase("jsConfirm", "You clicked: Cancel", Description = "Kich ban xu ly JS Confirm (Dismiss) va kiem tra #result")]
+    [TestCase("jsPrompt", "You entered: Hello Lab3", Description = "Kich ban xu ly JS Prompt (nhap Hello Lab3) va kiem tra #result")]
     [Description("Kich ban xu ly 3 loai JavaScript Alert/Confirm/Prompt va Assert ket qua")]
     public void JavaScriptAlert(string kind, string expected)
     {

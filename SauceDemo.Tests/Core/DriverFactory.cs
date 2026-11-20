@@ -24,7 +24,10 @@ public static class DriverFactory
             case BrowserKind.CocCoc:
                 var chrome = new ChromeOptions();
                 if (config.Headless) chrome.AddArgument("--headless=new");
-                chrome.AddArguments($"--window-size={config.WindowWidth},{config.WindowHeight}", "--no-sandbox", "--disable-dev-shm-usage");
+                chrome.AddArguments($"--window-size={config.WindowWidth},{config.WindowHeight}", "--no-sandbox", "--disable-dev-shm-usage", "--incognito", "--disable-features=PasswordLeakDetection");
+                chrome.AddUserProfilePreference("credentials_enable_service", false);
+                chrome.AddUserProfilePreference("profile.password_manager_enabled", false);
+                chrome.AddUserProfilePreference("profile.password_manager_leak_detection", false);
                 if (browser == BrowserKind.CocCoc && string.IsNullOrWhiteSpace(binary))
                     binary = config.CocCocBinary;
                 if (browser == BrowserKind.CocCoc && !File.Exists(binary))
@@ -35,7 +38,7 @@ public static class DriverFactory
             case BrowserKind.Edge:
                 var edge = new EdgeOptions();
                 if (config.Headless) edge.AddArgument("--headless=new");
-                edge.AddArguments($"--window-size={config.WindowWidth},{config.WindowHeight}", "--no-sandbox", "--disable-dev-shm-usage");
+                edge.AddArguments($"--window-size={config.WindowWidth},{config.WindowHeight}", "--no-sandbox", "--disable-dev-shm-usage", "--inprivate");
                 if (!string.IsNullOrWhiteSpace(binary)) edge.BinaryLocation = binary;
                 return new EdgeDriver(edge);
             default:

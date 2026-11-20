@@ -8,6 +8,7 @@ public class InventoryPage(IWebDriver driver, int timeout) : BasePage(driver, ti
 {
     private readonly By title = By.CssSelector("[data-test='title']");
     private readonly By backpack = By.Id("add-to-cart-sauce-labs-backpack");
+    private readonly By removeBackpack = By.Id("remove-sauce-labs-backpack");
     private readonly By cart = By.CssSelector("[data-test='shopping-cart-link']");
 
     private readonly By items = By.CssSelector("[data-test='inventory-item']");
@@ -43,10 +44,16 @@ public class InventoryPage(IWebDriver driver, int timeout) : BasePage(driver, ti
     public IReadOnlyList<decimal> LayDanhSachGia() => Products()
         .Select(p => decimal.Parse(p.Price.TrimStart('$'), CultureInfo.InvariantCulture)).ToArray();
     public string Title => Tim(title).Text;
-    public void AddBackpack() => Tim(backpack).Click();
+    public void AddBackpack()
+    {
+        Tim(backpack).Click();
+        Tim(removeBackpack);
+    }
+
     public CartPage OpenCart()
     {
         Tim(cart).Click();
+        Wait.Until(d => d.Url.EndsWith("/cart.html", StringComparison.Ordinal));
         return new CartPage(Driver, Timeout);
     }
 }
