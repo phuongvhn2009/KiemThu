@@ -1,0 +1,78 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 842 595] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 2792 >>
+stream
+0.118 0.227 0.373 rg 0 535 842 60 re f
+BT /F2 15.0 Tf 1 1 1 rg 24.0 567.0 Td (Bao cao Ket qua Kiem thu Tu dong - NUnit + Selenium) Tj ET
+BT /F1 9.0 Tf 0.80 0.86 0.94 rg 24.0 548.0 Td (SauceDemo & Lab 1-6 | PASS/FAIL, Link URL & Screenshot Loi | UTC: 2026-11-20 14:26:06) Tj ET
+0.953 0.957 0.965 rg 24 494 794 32 re f
+0.82 0.84 0.87 RG 0.6 w 24 494 794 32 re S
+BT /F2 9.0 Tf 0.07 0.09 0.15 rg 34.0 512.0 Td (Tong: 1) Tj ET
+BT /F2 9.0 Tf 0.09 0.40 0.20 rg 95.0 512.0 Td (PASS: 0) Tj ET
+BT /F2 9.0 Tf 0.60 0.11 0.11 rg 165.0 512.0 Td (FAIL: 1) Tj ET
+BT /F2 9.0 Tf 0.07 0.09 0.15 rg 232.0 512.0 Td (Ty le: 0.0%) Tj ET
+BT /F2 9.0 Tf 0.07 0.09 0.15 rg 316.0 512.0 Td (Thoi gian: 4.54s) Tj ET
+BT /F1 9.0 Tf 0.20 0.25 0.33 rg 420.0 512.0 Td (Browser: Chrome) Tj ET
+BT /F1 8.5 Tf 0.28 0.33 0.41 rg 34.0 499.0 Td (BaseUrl: https://www.saucedemo.com/) Tj ET
+0.118 0.227 0.373 rg 24.0 462.0 794.0 20.0 re f
+BT /F2 8.5 Tf 1 1 1 rg 28.0 469.0 Td (#) Tj ET
+BT /F2 8.5 Tf 1 1 1 rg 52.0 469.0 Td (Ten ca test) Tj ET
+BT /F2 8.5 Tf 1 1 1 rg 202.0 469.0 Td (Category) Tj ET
+BT /F2 8.5 Tf 1 1 1 rg 277.0 469.0 Td (KQ) Tj ET
+BT /F2 8.5 Tf 1 1 1 rg 319.0 469.0 Td (Ms) Tj ET
+BT /F2 8.5 Tf 1 1 1 rg 359.0 469.0 Td (Tai khoan) Tj ET
+BT /F2 8.5 Tf 1 1 1 rg 449.0 469.0 Td (Link URL) Tj ET
+BT /F2 8.5 Tf 1 1 1 rg 619.0 469.0 Td (Loi / Screenshot) Tj ET
+0.996 0.886 0.886 rg 273.0 438.0 42.0 24.0 re f
+0.82 0.84 0.87 RG 0.5 w 24.0 438.0 794.0 24.0 re S
+BT /F1 7.8 Tf 0.07 0.09 0.15 rg 28.0 452.0 Td (1) Tj ET
+BT /F1 7.6 Tf 0.07 0.09 0.15 rg 52.0 452.0 Td (DynamicLoadingWithoutWait) Tj ET
+BT /F1 7.2 Tf 0.40 0.45 0.52 rg 52.0 442.0 Td (Kich ban co y khong cho #finis...) Tj ET
+BT /F1 7.5 Tf 0.20 0.25 0.33 rg 202.0 452.0 Td (Lab, Slow) Tj ET
+BT /F2 7.8 Tf 0.600 0.106 0.106 rg 281.0 452.0 Td (FAIL) Tj ET
+BT /F1 7.6 Tf 0.07 0.09 0.15 rg 319.0 452.0 Td (4280) Tj ET
+BT /F1 7.5 Tf 0.20 0.25 0.33 rg 359.0 452.0 Td (-) Tj ET
+BT /F1 7.2 Tf 0.08 0.32 0.62 rg 449.0 452.0 Td (https://the-internet.herokuapp.com/dynami...) Tj ET
+BT /F1 7.2 Tf 0.60 0.11 0.11 rg 619.0 452.0 Td (OpenQA.Selenium.NoSuchElementException : ...) Tj ET
+BT /F1 7.0 Tf 0.28 0.33 0.41 rg 619.0 442.0 Td (Shot: DynamicLoadingWithoutWait.png) Tj ET
+0.82 0.84 0.87 RG 0.4 w 48.0 438.0 m 48.0 482.0 l S
+0.82 0.84 0.87 RG 0.4 w 198.0 438.0 m 198.0 482.0 l S
+0.82 0.84 0.87 RG 0.4 w 273.0 438.0 m 273.0 482.0 l S
+0.82 0.84 0.87 RG 0.4 w 315.0 438.0 m 315.0 482.0 l S
+0.82 0.84 0.87 RG 0.4 w 355.0 438.0 m 355.0 482.0 l S
+0.82 0.84 0.87 RG 0.4 w 445.0 438.0 m 445.0 482.0 l S
+0.82 0.84 0.87 RG 0.4 w 615.0 438.0 m 615.0 482.0 l S
+BT /F1 8.0 Tf 0.40 0.45 0.52 rg 24.0 18.0 Td (KiemThu / SauceDemo.Tests - Xuat tu dong tu NUnit TestReportCollector) Tj ET
+BT /F1 8.0 Tf 0.40 0.45 0.52 rg 754.0 18.0 Td (Trang 1 / 1) Tj ET
+
+endstream
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000185 00000 n 
+0000000260 00000 n 
+0000000396 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+3240
+%%EOF

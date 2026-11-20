@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Báo cáo kiểm thử tự động - SauceDemo (NUnit + Selenium)</title>
+  <style>
+    :root { --bg:#0f172a; --card:#1e293b; --line:#334155; --text:#f8fafc; --muted:#94a3b8; --pass-bg:#14532d; --pass-fg:#86efac; --fail-bg:#7f1d1d; --fail-fg:#fca5a5; --accent:#38bdf8; }
+    * { box-sizing:border-box; }
+    body { margin:0; padding:24px; font-family:'Segoe UI',system-ui,-apple-system,sans-serif; background:var(--bg); color:var(--text); }
+    .wrap { max-width:1440px; margin:0 auto; }
+    h1 { margin:0 0 6px; font-size:24px; }
+    .sub { color:var(--muted); font-size:13px; margin-bottom:20px; }
+    .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px; margin-bottom:20px; }
+    .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px 16px; }
+    .card .k { font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; }
+    .card .v { font-size:22px; font-weight:700; margin-top:4px; }
+    .v.pass { color:var(--pass-fg); } .v.fail { color:var(--fail-fg); }
+    .toolbar { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:14px; }
+    .btn { background:var(--card); color:var(--text); border:1px solid var(--line); border-radius:8px; padding:7px 14px; cursor:pointer; font-size:13px; }
+    .btn.active { border-color:var(--accent); color:var(--accent); }
+    .tbl-wrap { overflow-x:auto; background:var(--card); border:1px solid var(--line); border-radius:10px; }
+    table { width:100%; border-collapse:collapse; font-size:13px; }
+    th, td { padding:10px 12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+    th { background:#0b1324; color:#cbd5e1; position:sticky; top:0; white-space:nowrap; }
+    tr:hover td { background:rgba(56,189,248,0.06); }
+    .badge { display:inline-block; padding:2px 9px; border-radius:999px; font-weight:700; font-size:12px; }
+    .badge.PASS { background:var(--pass-bg); color:var(--pass-fg); }
+    .badge.FAIL { background:var(--fail-bg); color:var(--fail-fg); }
+    a { color:var(--accent); text-decoration:none; word-break:break-all; } a:hover { text-decoration:underline; }
+    .mono { font-family:Consolas,'Courier New',monospace; font-size:12px; }
+    .err { color:#fca5a5; max-width:320px; white-space:pre-wrap; word-break:break-word; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Báo cáo kết quả kiểm thử tự động (NUnit + Selenium)</h1>
+  <div class="sub">Trình duyệt: <strong>Chrome</strong> &middot; Base URL: <a href="https://www.saucedemo.com/" target="_blank" rel="noopener">https://www.saucedemo.com/</a> &middot; Hoàn tất (UTC): 2026-11-20 14:27:07</div>
+  <div class="cards">
+    <div class="card"><div class="k">Tổng số ca</div><div class="v">20</div></div>
+    <div class="card"><div class="k">PASS</div><div class="v pass">20</div></div>
+    <div class="card"><div class="k">FAIL</div><div class="v fail">0</div></div>
+    <div class="card"><div class="k">Tỷ lệ đạt</div><div class="v">100.0%</div></div>
+    <div class="card"><div class="k">Tổng thời gian</div><div class="v">59.56s</div></div>
+  </div>
+  <div class="toolbar">
+    <button class="btn active" onclick="filterRows('ALL', this)">Tất cả (20)</button>
+    <button class="btn" onclick="filterRows('PASS', this)">PASS (20)</button>
+    <button class="btn" onclick="filterRows('FAIL', this)">FAIL (0)</button>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr>
+        <th>STT</th><th>Tên ca test</th><th>Fixture</th><th>Category</th><th>Kịch bản kiểm thử</th><th>Tài khoản</th><th>Link URL</th><th>Kết quả</th><th>Thời gian (ms)</th><th>Thông báo lỗi</th><th>Screenshot lỗi</th>
+      </tr></thead>
+      <tbody>
+      <tr data-status="PASS">
+        <td>1</td>
+        <td class="mono">AddBackpack</td>
+        <td>CartTests</td>
+        <td>Cart, Smoke</td>
+        <td>Kich ban them Sauce Labs Backpack vao gio hang va kiem tra chi tiet gio</td>
+        <td class="mono">-</td>
+        <td class="mono"><a href="https://www.saucedemo.com/cart.html" target="_blank" rel="noopener">https://www.saucedemo.com/cart.html</a></td>
+        <td><span class="badge PASS">PASS</span></td>
+        <td>4965</td>
+        <td class="err">-</td>
+        <td>-</td>
+      </tr>
+      <tr data-status="PASS">
+        <td>2</td>
+        <td class="mono">PricesAscending</td>
+        <td>InventoryTests</td>
+        <td>Inventory</td>
+        <td>Kich ban sap xep gia san pham tang dan (Price low to high)</td>
+        <td class="mono">-</td>
+        <td class="mono"><a href="https://www.saucedemo.com/inventory.html" target="_blank" rel="noopener">https://www.saucedemo.com/inventory.html</a></td>
+        <td><span class="badge PASS">PASS</span></td>
+        <td>4272</td>
+        <td class="err">-</td>
+        <td>-</td>
+      </tr>
+      <tr data-status="PASS">
+        <td>3</td>
+        <td class="mono">Products</td>
+        <td>InventoryTests</td>
+        <td>Inventory, Smoke</td>
+        <td>Kich ban hien thi trang Inventory va thu thap 6 san pham</td>
+        <td class="mono">-</td>
+        <td class="mono"><a href="https://www.saucedemo.com/inventory.html" target="_blank" rel="noopener">https://www.saucedemo.com/inventory.html</a></td>
+        <td><span class="badge PASS">PASS</span></td>
+        <td>2227</td>
+        <td class="err">-</td>
+        <td>-</td>
+      </tr>
+      <tr data-status="PASS">
+        <td>4</td>
+        <td class="mono">DynamicLoading</td>
+        <td>LabTests</td>
+        <td>Lab, Slow</td>
+        <td>Kich ban Explicit Wait cho phan tu dong #finish xuat hien</td>
+        <td class="mono">-</td>
+        <td class="mono"><a href="https://the-internet.herokuapp.com/dynamic_loading/2" target="_blank" rel="noopener">https://the-internet.herokuapp.com/dynamic_loading/2</a></td>
+        <td><span class="badge PASS">PASS</span></td>
+        <td>11254</td>
+        <td class="err">-</td>
+        <td>-</td>
+      </tr>
+      <tr data-status="PASS">
+        <td>5</td>
+        <td class="mono">Iframe</td>
+        <td>LabTests</td>
+        <td>Lab</td>
+        <td>Kich ban chuyen vao Iframe nhap noi dung va quay ve DefaultContent</td>
+        <td class="mono">-</td>
+        <td class="mono"><a href="https://the-internet.herokuapp.com/iframe" target="_blank" rel="noopener">https://the-internet.herokuapp.com/iframe</a></td>
+        <td><span class="badge PASS">PASS</span></td>
+        <td>5300</td>
+        <td class="err">-</td>
+        <td>-</td>
+      </tr>
+      <tr data-status="PASS">
+        <td>6</td>
+        <td class="mono">JavaScriptAlert(&quot;jsAlert&quot;,&quot;You successfully clicked an alert&quot;)</td>
+        <td>LabTests</td>
+        <td>Lab</td>
+        <td>Kich ban xu ly JS Alert (Accept) va kiem tra #result</td>
+        <td class="mono">-</td>
+        <td class="mono"><a href="https://the-internet.herokuapp.com/javascript_alerts" target="_blank" rel="noopener">https://the-internet.herokuapp.com/javascript_alerts</a></td>
+        <td><span class="badge PASS">PASS</span></td>
+        <td>4517</td>
+        <td class="err">-</td>
+        <td>-</td>
+      </tr>
+      <tr data-status="PASS">
+        <td>7</td>
+        <td class="mono">JavaScriptAlert(&quot;jsConfirm&quot;,&quot;You clicked: Cancel&quot;)</td>
+        <td>LabTests</td>
+        <td>Lab</td>
+        <td>Kich ban xu ly JS Confirm (Dismiss) va kiem tra #result</td>
+        <td class="mono">-</td>
+        <td class="mono"><a href="https://the-internet.herokuapp.com/javascript_alerts" target="_blank" rel="noopener">https://the-internet.herokuapp.com/javascript_alerts</a></td>
+        <td><span class="badge PASS">PASS</span></td>
+        <td>4465</td>
+        <td class="err">-</td>
+        <td>-</td>
+      </tr>
+      <tr data-status="PASS">
+        <td>8</td>
+        <td class="mono">JavaScriptAlert(&quot;jsPrompt&quot;,&quot;You entered: Hello Lab3&quot;)</td>
+        <td>LabTests</td>
+        <td>Lab</td>
+        <td>Kich ban xu ly JS Prompt (nhap Hello Lab3) va kiem tra #result</td>
+        <td class="mono">-</td>
+        <td class="mono"><a href="https://the-internet.herokuapp.com/javascript_alerts" target="_blank" rel="noopener">https://the-internet.herokuapp.com/javascript_alerts</a></td>
+        <td><span class="badge PASS">PASS</span></td>
+        <td>4669</td>
+        <td class="err">-</td>
+        <td>-</td>
+      </tr>
+      <tr data-status="PASS">
+        <td>9</td>
+        <td class="mono">DangNhap_00_standard_user</td>
+        <td>LoginTests</td>
+        <td>Login, Smoke</td>
+        <td>UseCase Dang nhap: valid (Expected=PASS/Inventory)</td>
+        <td class="mono">standard_user</td>
+        <td class="mono"><a href="https://www.saucedemo.com/inventory.html" target="_blank" rel="noopener">https://www.saucedemo.com/inventory.html</a></td>
+        <td><span class="badge PASS">PASS</span></td>
+        <td>3004</td>
+        <td class="err">-</td>
+        <td>-</td>
+      </tr>
+      <tr data-status="PASS">
+        <td>10</td>
+        <td class="mono">DangNhap_01_performance_glitch_user</td>
+        <td>LoginTests</td>
+        <td>Login, Slow</td>
+        <td>UseCase Dang nhap: slow (Expected=PASS/Inventory)</td>
+        <td class="mono">performance_glitch_user</td>
+        <td class="mono"><a href="https://www.saucedemo.com/inventory.html" target="_blank" rel="noopener">https://www.saucedemo.com/inventory.html</a></td>
+        <td><span class="badge PASS">PASS</span></td>
+        <td>7942</td>
+        <td class="err">-</td>
+        <td>-</td>
+      </tr>
+      <tr data-status="PASS">
+        <td>11</td>
+        <td class="mono">DangNhap_02_locked_out_user</td>
+        <td>LoginTests</td>
+        <td>Login</td>
+        <td>UseCase Dang nhap: locked (Expected=FAIL/Error)</td>
+        <td class="mono">locked_out_user</td>
+        <td class="mono"><a href="https://www.saucedemo.com/" target="_blank" rel="noopener">https://www.saucedemo.com/</a></td>
+        <td><span class="badge PASS">PASS</span></td>
+        <td>5111</td>
+        <td class="err">-</td>
+        <td>-</td>
+      </tr>
+      <tr data-status="PASS">
+        <td>12</td>
+        <td class="mono">DangNhap_03_standard_user</td>
+        <td>LoginTests</td>
+        <td>Login</td>
+        <td>UseCase Dang nhap: wrong-password (Expected=FAIL/Error)</td>
+        <td class="mono">standard_user</td>
+        <td class="mono"><a href="https://www.saucedemo.com/" target="_blank" rel="noopener">https://www.saucedemo.com/</a></td>
+        <td><span class="badge PASS">PASS</span></td>
+        <td>5114</td>
+        <td class="err">-</td>
+        <td>-</td>
+      </tr>
+      <tr data-status="PASS">
+        <td>13</td>
+        <td class="mono">DangNhap_04_</td>
+        <td>LoginTests</td>
+        <td>Login</td>
+        <td>UseCase Dang nhap: empty-user (Expected=FAIL/Error)</td>
+        <td class="mono">(empty)</td>
+        <td class="mono"><a href="https://www.saucedemo.com/" target="_blank" rel="noopener">https://www.saucedemo.com/</a></td>
+        <td><span class="badge PASS">PASS</span></td>
+        <td>4958</td>
+        <td class="err">-</td>
+        <td>-</td>
+      </tr>
+      <tr data-status="PASS">
+        <td>14</td>
+        <td class="mono">DangNhap_05_standard_user</td>
+        <td>LoginTests</td>
+        <td>Login</td>
+        <td>UseCase Dang nhap: empty-password (Expected=FAIL/Error)</td>
+        <td class="mono">standard_user</td>
+        <td class="mono"><a href="https://www.saucedemo.com/" target="_blank" rel="noopener">https://www.saucedemo.com/</a></td>
+        <td><span class="badge PASS">PASS</span></td>
+        <td>4835</td>
+        <td class="err">-</td>
+        <td>-</td>
+      </tr>
+      <tr data-status="PASS">
+        <td>15</td>
+        <td class="mono">DangNhap_06_</td>
+        <td>LoginTests</td>
+        <td>Login</td>
+        <td>UseCase Dang nhap: both-empty (Expected=FAIL/Error)</td>
+        <td class="mono">(empty)</td>
+        <td class="mono"><a href="https://www.saucedemo.com/" target="_blank" rel="noopener">https://www.saucedemo.com/</a></td>
+        <td><span class="badge PASS">PASS</span></td>
+        <td>4704</td>
+        <td class="err">-</td>
+        <td>-</td>
+      </tr>
+      <tr data-status="PASS">
+        <td>16</td>
+        <td class="mono">DangNhap_07_unknown</td>
+        <td>LoginTests</td>
+        <td>Login</td>
+        <td>UseCase Dang nhap: unknown-user (Expected=FAIL/Error)</td>
+        <td class="mono">unknown</td>
+        <td class="mono"><a href="https://www.saucedemo.com/" target="_blank" rel="noopener">https://www.saucedemo.com/</a></td>
+        <td><span class="badge PASS">PASS</span></td>
+        <td>4766</td>
+        <td class="err">-</td>
+        <td>-</td>
+      </tr>
+      <tr data-status="PASS">
+        <td>17</td>
+        <td class="mono">DangNhap_08_ standard_user </td>
+        <td>LoginTests</td>
+        <td>Login</td>
+        <td>UseCase Dang nhap: Khoang trang thua (Expected=FAIL/Error)</td>
+        <td class="mono"> standard_user </td>
+        <td class="mono"><a href="https://www.saucedemo.com/" target="_blank" rel="noopener">https://www.saucedemo.com/</a></td>
+        <td><span class="badge PASS">PASS</span></td>
+        <td>4747</td>
+        <td class="err">-</td>
+        <td>-</td>
+      </tr>
+      <tr data-status="PASS">
+        <td>18</td>
+        <td class="mono">DangNhap_09_&#39; OR 1=1 --</td>
+        <td>LoginTests</td>
+        <td>Login</td>
+        <td>UseCase Dang nhap: Ky tu dac biet (Expected=FAIL/Error)</td>
+        <td class="mono">&#39; OR 1=1 --</td>
+        <td class="mono"><a href="https://www.saucedemo.com/" target="_blank" rel="noopener">https://www.saucedemo.com/</a></td>
+        <td><span class="badge PASS">PASS</span></td>
+        <td>4797</td>
+        <td class="err">-</td>
+        <td>-</td>
+      </tr>
+      <tr data-status="PASS">
+        <td>19</td>
+        <td class="mono">DangNhap_10_standard_user</td>
+        <td>LoginTests</td>
+        <td>Login</td>
+        <td>UseCase Dang nhap: Mat khau dai 256 ky tu (Expected=FAIL/Error)</td>
+        <td class="mono">standard_user</td>
+        <td class="mono"><a href="https://www.saucedemo.com/" target="_blank" rel="noopener">https://www.saucedemo.com/</a></td>
+        <td><span class="badge PASS">PASS</span></td>
+        <td>4843</td>
+        <td class="err">-</td>
+        <td>-</td>
+      </tr>
+      <tr data-status="PASS">
+        <td>20</td>
+        <td class="mono">PageTitle</td>
+        <td>LoginTests</td>
+        <td>Login, Smoke</td>
+        <td>Kiem tra tieu de va URL trang dang nhap SauceDemo</td>
+        <td class="mono">-</td>
+        <td class="mono"><a href="https://www.saucedemo.com/" target="_blank" rel="noopener">https://www.saucedemo.com/</a></td>
+        <td><span class="badge PASS">PASS</span></td>
+        <td>1547</td>
+        <td class="err">-</td>
+        <td>-</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script>
+function filterRows(status, btn) {
+  document.querySelectorAll('.toolbar .btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('tbody tr').forEach(tr => {
+    tr.style.display = (status === 'ALL' || tr.dataset.status === status) ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>
